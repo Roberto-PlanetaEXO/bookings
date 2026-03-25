@@ -1,0 +1,559 @@
+/*---WOOCOMMERCE - CHECKOUT CLEAN (PlanetaExo)--*/
+/* Baseado EXATAMENTE no CSS funcional do planetaexo.com/trips */
+
+.travel-monster-post {
+    margin: 0 1em 0 1em;
+}
+
+body.checkout-clean .woocommerce {
+    display: flex;
+    flex-direction: column;
+}
+
+/*Coupon form*/
+@media (max-width: 767px) {
+    body.checkout-clean .checkout_coupon {
+        width: 100% !important;
+    }
+}
+
+body.checkout-clean .woocommerce-form-coupon-toggle {
+    order: 1;
+    width: 100%;
+}
+
+body.checkout-clean .woocommerce-info {
+    margin: 1em 0 2em;
+    border-top: 3px solid rgb(38 120 110 / 100%) !important;
+}
+
+body.checkout-clean .woocommerce-info::before {
+    color: rgb(38 120 110 / 100%)
+}
+
+body.checkout-clean .checkout_coupon {
+    border-top: 3px solid rgb(38 120 110 / 100%) !important;
+    margin: 0.5em 0 1em !important;
+    width: calc(50% - 10px);
+    padding: 10px !important;
+    box-shadow: 0 4px 4px rgba(28, 32, 17, .32), 0 4px 40px rgba(28, 32, 17, .04);
+    order: 2;
+}
+
+body.checkout-clean .form-row-last button {
+    background-color: #e48e45 !important;
+    color: white !important;
+}
+
+body.checkout-clean .button:hover:first-child {
+    background-color: #c18048 !important;
+    color: #e7e4e4 !important;
+}
+
+body.checkout-clean .form-row-first {
+    width: 100% !important;
+}
+
+body.checkout-clean .form-row-last {
+    display: flex;
+    flex-direction: row-reverse;
+    float: unset !important;
+    width: 100% !important;
+}
+
+/*Forms*/
+@media (max-width: 767px) {
+    body.checkout-clean .checkout {
+        flex-direction: column !important;
+        gap: 0 !important;
+    }
+}
+
+body.checkout-clean .checkout {
+    display: flex;
+    flex-flow: row wrap;
+    grid-gap: 20px;
+}
+
+body.checkout-clean div#customer_details {
+    display: flex;
+    flex-direction: column;
+}
+
+/*Billing Details*/
+body.checkout-clean div.col-1 {
+    width: 100% !important;
+    background: #ffffff;
+    padding: 30px 24px 40px;
+    box-shadow: 0 4px 4px rgba(28, 32, 17, .32), 0 4px 40px rgba(28, 32, 17, .04);
+    border-radius: 4px;
+    border-top: 3px solid rgb(38 120 110 / 100%) !important;
+}
+
+body.checkout-clean .form-row-last {
+    width: 100%;
+}
+
+/* FIRST NAME e LAST NAME - um embaixo do outro */
+body.checkout-clean #billing_first_name_field {
+    width: 100% !important;
+    float: none !important;
+    display: block !important;
+}
+
+body.checkout-clean #billing_last_name_field {
+    width: 100% !important;
+    float: none !important;
+    display: block !important;
+}
+
+body.checkout-clean p#billing_persontype_field span.select2 {
+    width: 100% !important;
+}
+
+body.checkout-clean .select2-container--default .select2-selection--single {
+    padding: 22px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+}
+
+body.checkout-clean .select2-container .select2-selection--single .select2-selection__rendered {
+    position: relative;
+}
+
+body.checkout-clean .select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 8px;
+}
+
+body.checkout-clean .select2-container .select2-selection--single .select2-selection__rendered {
+    bottom: 14px !important;
+    right: 14px !important;
+}
+
+body.checkout-clean #billing_cellphone_field {
+    display: block;
+}
+
+/* INPUTS, SELECTS, TEXTAREAS ARREDONDADOS */
+body.checkout-clean input[type="text"],
+body.checkout-clean input[type="email"],
+body.checkout-clean input[type="tel"],
+body.checkout-clean input[type="password"],
+body.checkout-clean input[type="number"],
+body.checkout-clean select,
+body.checkout-clean textarea {
+    border-radius: 12px !important;
+    border: 1px solid #e0e0e0 !important;
+    padding: 12px 16px !important;
+}
+
+body.checkout-clean input[type="text"]:focus,
+body.checkout-clean input[type="email"]:focus,
+body.checkout-clean input[type="tel"]:focus,
+body.checkout-clean input[type="password"]:focus,
+body.checkout-clean input[type="number"]:focus,
+body.checkout-clean select:focus,
+body.checkout-clean textarea:focus {
+    border-color: rgb(38 120 110) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(38, 120, 110, 0.15) !important;
+}
+
+/*Additional Information*/
+@media (max-width: 770px) {
+    body.checkout-clean div.col-2 {
+        margin-top: 20px;
+    }
+}
+
+body.checkout-clean div.col-2 {
+    margin-top: 20px;
+    width: 100% !important;
+    background: #ffffff;
+    padding: 32px 24px;
+    box-shadow: 0 4px 4px rgba(28, 32, 17, .32), 0 4px 40px rgba(28, 32, 17, .04);
+    border-radius: 4px;
+    border-top: 3px solid rgb(38 120 110 / 100%) !important;
+}
+
+/*Booking Summary*/
+@media (min-width: 1042px) {
+    body.checkout-clean dd.variation-TravellersInfo {
+        bottom: 0px !important;
+    }
+}
+
+body.checkout-clean td.product-name {
+    color: black;
+    background-color: #f6f6f6 !important;
+    padding-left: 20px !important;
+    background-clip: padding-box;
+    border-bottom: 0px;
+}
+
+body.checkout-clean td.product-name:first-line {
+    color: black;
+    font-weight: 600;
+}
+
+body.checkout-clean dl.variation {
+    margin-top: 10px;
+}
+
+body.checkout-clean dl.variation dd hr {
+    display: none;
+}
+
+body.checkout-clean .variation-Package {
+    color: rgb(38 120 110 / 100%);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+body.checkout-clean dd.variation-Package {
+    text-align: left;
+}
+
+body.checkout-clean .variation-TripBookingInfo {
+    font-size: 18px;
+}
+
+body.checkout-clean dt.variation-TripBookingInfo {
+    margin-top: .5em !important;
+    position: relative;
+    bottom: 10px;
+}
+
+body.checkout-clean dd.variation-TripBookingInfo {
+    margin: 0 !important;
+    text-align: left;
+    font-weight: 400;
+}
+
+body.checkout-clean dd.variation-TripBookingInfo strong {
+    display: none;
+}
+
+body.checkout-clean dd.variation-TripBookingInfo p:before {
+    content: "Starting Date: ";
+}
+
+body.checkout-clean .variation-TravellersInfo {
+    font-size: 18px;
+}
+
+body.checkout-clean dt.variation-TravellersInfo {
+    position: relative;
+    bottom: 10px;
+    text-align: left;
+}
+
+body.checkout-clean dd.variation-TravellersInfo {
+    position: relative;
+    bottom: 10px;
+    font-weight: 400;
+}
+
+body.checkout-clean dd.variation-TravellersInfo strong {
+    font-weight: 400;
+}
+
+body.checkout-clean dd.variation-TravellersInfo p:after {
+    content: ")";
+}
+
+body.checkout-clean dd.variation-TravellersInfo strong:after {
+    margin-left: 2px;
+    margin-right: 0px;
+    content: "(";
+    font-weight: 400;
+}
+
+/*Booking Summary - Product Total*/
+body.checkout-clean td.product-total {
+    background-color: #f6f6f6;
+    text-align: center;
+}
+
+body.checkout-clean tr.fee {
+    background-color: #83CEC1;
+}
+
+body.checkout-clean tfoot tr th {
+    border-top: 0;
+    border-bottom: 0 !important;
+    margin: 0;
+}
+
+body.checkout-clean tfoot tr td {
+    text-align: center;
+}
+
+body.checkout-clean tfoot tr.order-total td {
+    padding: 0 2px !important;
+    position: relative;
+}
+
+body.checkout-clean tfoot tr.order-total th {
+    border-top: 0 !important;
+}
+
+/*Payment Options*/
+body.checkout-clean ul.wc_payment_methods {
+    background-color: rgb(38 120 110 / 25%);
+    font-weight: 400;
+    color: black;
+    border-bottom: 1px solid rgb(38 120 110 / 25%) !important;
+}
+
+body.checkout-clean ul.wc_payment_methods li label {
+    color: white;
+    font-weight: 500;
+}
+
+body.checkout-clean div.place-order {
+    background-color: rgb(38 120 110 / 25%);
+}
+
+body.checkout-clean .woocommerce-privacy-policy-text a {
+    color: blue;
+}
+
+body.checkout-clean fieldset label {
+    color: black !important;
+    font-weight: 300 !important;
+}
+
+body.checkout-clean .payment_method_stripe_boleto label {
+    font-weight: 300 !important;
+}
+
+body.checkout-clean div.payment_method_stripe_boleto label {
+    color: black !important;
+    font-weight: 300 !important;
+}
+
+body.checkout-clean input[type='radio'] {
+    display: none;
+    float: left;
+}
+
+body.checkout-clean .payment_box {
+    background-color: #f5f4f5 !important;
+    font-weight: 400;
+}
+
+body.checkout-clean .payment_box:before {
+    border: 1em solid #f5f4f5 !important;
+    border-right-color: transparent !important;
+    border-left-color: transparent !important;
+    border-top-color: transparent !important
+}
+
+body.checkout-clean button#place_order {
+    background-color: #ffffff !important;
+    color: #44b9a6 !important;
+    border-radius: 12px !important;
+}
+
+body.checkout-clean button#place_order:hover {
+    color: #006e90 !important;
+}
+
+body.checkout-clean dt.variation-TripExtras {
+    position: relative;
+    bottom: 10px;
+    text-align: left;
+    font-size: 18px;
+}
+
+body.checkout-clean .variation-TripExtras {
+    font-size: 18px;
+    float: left;
+}
+
+body.checkout-clean dd.variation-TripExtras {
+    margin-top: -11px !important;
+}
+
+body.checkout-clean dd.variation-TripExtras strong {
+    font-weight: 100;
+}
+
+body.checkout-clean div#payment {
+    background: #83CEC1 !important;
+}
+
+/* New Changes */
+body.checkout-clean ul.woocommerce-error {
+    padding: 1em 2em 1em 3.5em;
+    margin: 0;
+}
+
+body.checkout-clean ul.woocommerce-error li {
+    margin-bottom: 5px !important;
+}
+
+body.checkout-clean .woocommerce-NoticeGroup {
+    flex: 1 0 100%;
+}
+
+body.checkout-clean .checkout #customer_details,
+body.checkout-clean .checkout #order_review {
+    flex: 1 1 calc(50% - 10px);
+}
+
+body.checkout-clean input[type='radio']+label:before {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: 2px;
+    left: -0.5px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+    margin-right: 5px;
+}
+
+body.checkout-clean input[type='radio']:checked+label:before {
+    background-color: #44b9a6;
+}
+
+body.checkout-clean #crumbs {
+    display: none;
+}
+
+body.checkout-clean .woocommerce-thankyou-order-received {
+    text-align: center;
+}
+
+body.checkout-clean .woocommerce ul.order_details {
+    display: flex;
+    place-content: center;
+    margin-top: 30px;
+}
+
+body.checkout-clean .woocommerce ul.order_details::before,
+body.checkout-clean .woocommerce ul.order_details::after {
+    content: none;
+}
+
+body.checkout-clean .woocommerce ul.order_details li {
+    font-size: 18px;
+}
+
+body.checkout-clean .woocommerce ul.order_details li strong {
+    font-size: 18px;
+}
+
+body.checkout-clean .order-details-wrapper {
+    border-top: 3px solid rgb(38 120 110 / 100%) !important;
+    border-radius: 4px !important;
+    border-spacing: 0px !important;
+    box-shadow: 0 4px 4px rgba(28, 32, 17, .32), 0 4px 40px rgba(28, 32, 17, .04);
+}
+
+body.checkout-clean .order-details-wrapper .woocommerce-order-details__title,
+body.checkout-clean .order-details-wrapper #order_review_heading {
+    font-size: 26px !important;
+    padding: 30px 20px 20px;
+    margin-bottom: 0;
+    text-transform: none;
+}
+
+body.checkout-clean form h3 {
+    font-size: 26px !important;
+    padding: 0 0 20px;
+}
+
+body.checkout-clean table.shop_table {
+    border-spacing: 0px !important;
+    border-radius: unset;
+}
+
+body.checkout-clean table.shop_table thead th {
+    display: none;
+}
+
+body.checkout-clean:not(.logged-in) .woocommerce-checkout-payment fieldset {
+    padding: none;
+    border: none;
+}
+
+@media (max-width: 767px) {
+    body.checkout-clean #order_review {
+        margin-top: 20px;
+    }
+
+    body.checkout-clean .woocommerce ul.order_details {
+        flex-flow: row wrap;
+        grid-gap: 20px;
+    }
+
+    body.checkout-clean .woocommerce ul.order_details li {
+        margin: 0 !important;
+        padding: 0;
+        border-right: none;
+        border-bottom: 1px dashed #cfc8d8;
+        padding-bottom: 20px;
+        font-size: 16px !important;
+        flex-basis: calc(50% - 10px);
+    }
+
+    body.checkout-clean .woocommerce ul.order_details li strong {
+        font-size: 16px;
+    }
+
+    body.checkout-clean .woocommerce-table.order_details {
+        font-size: 16px;
+    }
+}
+
+/* Responsive - Product variations */
+@media (min-width: 200px) and (max-width: 333px) {
+    body.checkout-clean #order_review_heading {
+        display: block !important;
+        margin: 0;
+        position: absolute !important;
+        top: 2195px;
+        left: 33px;
+        visibility: hidden;
+    }
+}
+
+@media (min-width: 386px) and (max-width: 767px) {
+    body.checkout-clean .variation-Package {
+        font-size: 18px !important;
+    }
+
+    body.checkout-clean .variation-TripBookingInfo {
+        font-size: 16px !important;
+    }
+
+    body.checkout-clean dt.variation-TripBookingInfo {
+        display: inline-block;
+        width: 100%;
+        text-align: left
+    }
+
+    body.checkout-clean dd.variation-TripBookingInfo {
+        position: relative;
+        bottom: 15px;
+        left: 10px;
+    }
+
+    body.checkout-clean dt.variation-TravellersInfo {
+        display: inline-block;
+        width: 100%;
+    }
+
+    body.checkout-clean dd.variation-TravellersInfo {
+        position: relative;
+        left: 10px;
+        bottom: 10px;
+    }
+}

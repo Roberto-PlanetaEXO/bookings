@@ -1,0 +1,16 @@
+.DS_Store
+Thumbs.db
+
+# Dependências (se forem adicionadas depois)
+node_modules/
+vendor/
+
+# WordPress (mídias costumam ser grandes — descomente se não quiser versionar)
+# uploads/
+# upgrade/
+# cache/
+
+# Logs e ambientes locais
+*.log
+.env
+.env.local

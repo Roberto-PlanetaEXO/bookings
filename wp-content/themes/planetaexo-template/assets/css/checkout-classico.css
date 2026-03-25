@@ -1,0 +1,453 @@
+/* ============================================================
+   PlanetaExo — Checkout Clássico (versão reserva)
+   Baseado no layout do planetaexo.com/trips (travel-monster-child)
+   Todos os seletores escopados em body.checkout-classico para
+   não interferir com o checkout principal (checkout.css).
+   ============================================================ */
+
+/* ═══════════════════════════════════════════════════════════
+   DEBUG TEMPORÁRIO - REMOVER APÓS CONFIRMAR CARREGAMENTO
+   Se você ver borders coloridos, o CSS está carregando!
+   ═══════════════════════════════════════════════════════════ */
+body.checkout-classico::before {
+    content: "✓ CSS checkout-classico.css CARREGADO!" !important;
+    display: block !important;
+    background: #6db9ac !important;
+    color: #000 !important;
+    padding: 10px !important;
+    text-align: center !important;
+    font-weight: bold !important;
+    font-size: 16px !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 999999 !important;
+}
+
+body.checkout-classico form.woocommerce-checkout {
+    outline: 3px dashed blue !important;
+}
+
+body.checkout-classico #customer_details {
+    outline: 2px solid green !important;
+}
+
+body.checkout-classico #order_review {
+    outline: 2px solid orange !important;
+}
+/* ═══════════════════════════════════════════════════════════ */
+
+/* ── VARIÁVEIS LOCAIS ───────────────────────────────────── */
+body.checkout-classico {
+    --cc-green:        rgb(38 120 110);
+    --cc-green-light:  rgb(38 120 110 / 25%);
+    --cc-green-mint:   #83CEC1;
+    --cc-green-hover:  #006e90;
+    --cc-orange:       #e48e45;
+    --cc-orange-dark:  #c18048;
+    --cc-shadow:       0 4px 4px rgba(28,32,17,.32), 0 4px 40px rgba(28,32,17,.04);
+    --cc-radius:       4px;
+    --cc-bg:           #ffffff;
+}
+
+/* ── RESET DOS ESTILOS DO CHECKOUT PRINCIPAL ─────────────
+   O checkout.css é carregado globalmente; precisamos
+   neutralizar os estilos que colidem nesta variante.     */
+body.checkout-classico .woocommerce-checkout .col2-set {
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 0 !important;
+    float: none !important;
+    overflow: visible !important;
+    width: auto !important;
+}
+body.checkout-classico .woocommerce-checkout .col2-set .col-1,
+body.checkout-classico .woocommerce-checkout .col2-set .col-2 {
+    float: none !important;
+    width: 100% !important;
+}
+body.checkout-classico #payment {
+    background: var(--cc-green-mint) !important;
+    border-radius: var(--cc-radius) !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-top: 0 !important;
+}
+body.checkout-classico #payment ul.payment_methods li {
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    padding: 0 !important;
+}
+body.checkout-classico #payment > h3,
+body.checkout-classico .woocommerce-checkout #payment h3 {
+    display: none !important;
+}
+body.checkout-classico #payment #place_order,
+body.checkout-classico .woocommerce #place_order {
+    background-color: #ffffff !important;
+    color: var(--cc-green) !important;
+    border-radius: var(--cc-radius) !important;
+    box-shadow: none !important;
+    letter-spacing: 0 !important;
+    font-size: 1rem !important;
+    text-transform: none !important;
+}
+body.checkout-classico #payment #place_order:hover {
+    color: var(--cc-green-hover) !important;
+    background-color: #ffffff !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ── WRAPPER PRINCIPAL ──────────────────────────────────── */
+body.checkout-classico .pxo-checkout-classico-wrap {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ── COUPON ─────────────────────────────────────────────── */
+body.checkout-classico .woocommerce-checkout .woocommerce-form-coupon-toggle {
+    width: 100%;
+}
+
+body.checkout-classico .woocommerce-checkout .woocommerce-info {
+    margin: 1em 0 2em;
+    border-top: 3px solid var(--cc-green) !important;
+}
+body.checkout-classico .woocommerce-checkout .woocommerce-info::before {
+    color: var(--cc-green);
+}
+
+body.checkout-classico .woocommerce-checkout .checkout_coupon {
+    border-top: 3px solid var(--cc-green) !important;
+    margin: 0.5em 0 1em !important;
+    width: 100%;
+    padding: 10px !important;
+    box-shadow: var(--cc-shadow);
+}
+
+body.checkout-classico .woocommerce-checkout .form-row-last button {
+    background-color: var(--cc-orange) !important;
+    color: white !important;
+}
+body.checkout-classico .woocommerce-checkout .button:hover:first-child {
+    background-color: var(--cc-orange-dark) !important;
+    color: #e7e4e4 !important;
+}
+
+body.checkout-classico .woocommerce-checkout .form-row-first {
+    width: 100% !important;
+}
+body.checkout-classico .woocommerce-checkout .form-row-last {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    float: none !important;
+    width: 100% !important;
+}
+
+/* ── CHECKOUT FORM — 2 colunas ──────────────────────────── */
+body.checkout-classico .woocommerce-checkout .checkout,
+body.checkout-classico form.woocommerce-checkout {
+    display: flex !important;
+    flex-flow: row wrap !important;
+    align-items: flex-start !important;
+    gap: 24px !important;
+}
+
+/* Notices ocupam linha completa */
+body.checkout-classico .woocommerce-checkout .woocommerce-NoticeGroup,
+body.checkout-classico form.woocommerce-checkout .woocommerce-NoticeGroup,
+body.checkout-classico .woocommerce-checkout .woocommerce-NoticeGroup-checkout,
+body.checkout-classico form.woocommerce-checkout .woocommerce-NoticeGroup-checkout {
+    flex: 0 0 100% !important;
+    width: 100% !important;
+}
+
+/* Coluna esquerda: dados do cliente */
+body.checkout-classico .woocommerce-checkout .checkout #customer_details,
+body.checkout-classico form.woocommerce-checkout #customer_details {
+    flex: 1 1 0 !important;
+    min-width: 280px !important;
+    width: auto !important;
+    float: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+}
+
+/* Coluna direita: resumo + pagamento */
+body.checkout-classico .woocommerce-checkout .checkout #order_review_heading,
+body.checkout-classico form.woocommerce-checkout #order_review_heading,
+body.checkout-classico .woocommerce-checkout .checkout #order_review,
+body.checkout-classico form.woocommerce-checkout #order_review {
+    flex: 1 1 0 !important;
+    min-width: 280px !important;
+    width: auto !important;
+    float: none !important;
+}
+
+body.checkout-classico form.woocommerce-checkout #order_review_heading {
+    display: none !important; /* título "Seu pedido" fica dentro do card */
+}
+
+/* ── CARD BILLING DETAILS ───────────────────────────────── */
+body.checkout-classico .woocommerce-checkout div.col-1 {
+    width: 100% !important;
+    float: none !important;
+    background: var(--cc-bg);
+    padding: 30px 24px 40px;
+    box-shadow: var(--cc-shadow);
+    border-radius: var(--cc-radius);
+    border-top: 3px solid var(--cc-green) !important;
+    box-sizing: border-box !important;
+}
+
+body.checkout-classico .woocommerce-checkout div.col-2 {
+    width: 100% !important;
+    float: none !important;
+    background: var(--cc-bg);
+    padding: 32px 24px;
+    box-shadow: var(--cc-shadow);
+    border-radius: var(--cc-radius);
+    border-top: 3px solid var(--cc-green) !important;
+    box-sizing: border-box !important;
+}
+
+/* ── SELECT2 ────────────────────────────────────────────── */
+body.checkout-classico .woocommerce-checkout p#billing_persontype_field span.select2 {
+    width: 100% !important;
+}
+body.checkout-classico .woocommerce-checkout .select2-container--default .select2-selection--single {
+    padding: 22px;
+    border-radius: 0;
+    border: 1px solid #e0e0e0;
+}
+body.checkout-classico .woocommerce-checkout .select2-container .select2-selection--single .select2-selection__rendered {
+    position: relative;
+    bottom: 14px !important;
+    right: 14px !important;
+}
+body.checkout-classico .woocommerce-checkout .select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 8px;
+}
+
+/* ── ORDER REVIEW — heading ─────────────────────────────── */
+body.checkout-classico .woocommerce-checkout table.shop_table thead th {
+    display: none;
+}
+
+/* ── PRODUCT CARD ───────────────────────────────────────── */
+body.checkout-classico .woocommerce-checkout td.product-name {
+    color: black;
+    background-color: #f6f6f6 !important;
+    padding-left: 20px !important;
+    background-clip: padding-box;
+    border-bottom: 0px;
+}
+body.checkout-classico .woocommerce-checkout td.product-name:first-line {
+    color: black;
+    font-weight: 600;
+}
+body.checkout-classico .woocommerce-checkout dl.variation {
+    margin-top: 10px;
+}
+body.checkout-classico .woocommerce-checkout dl.variation dd hr {
+    display: none;
+}
+
+body.checkout-classico .woocommerce-checkout .variation-Package {
+    color: var(--cc-green);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+body.checkout-classico .woocommerce-checkout dd.variation-Package {
+    text-align: left;
+}
+
+body.checkout-classico .woocommerce-checkout .variation-TripBookingInfo { font-size: 18px; }
+body.checkout-classico .woocommerce-checkout dt.variation-TripBookingInfo {
+    margin-top: .5em !important;
+    position: relative;
+    bottom: 10px;
+}
+body.checkout-classico .woocommerce-checkout dd.variation-TripBookingInfo {
+    margin: 0 !important;
+    text-align: left;
+    font-weight: 400;
+}
+body.checkout-classico .woocommerce-checkout dd.variation-TripBookingInfo strong { display: none; }
+body.checkout-classico .woocommerce-checkout dd.variation-TripBookingInfo p:before { content: "Starting Date: "; }
+
+body.checkout-classico .woocommerce-checkout .variation-TravellersInfo { font-size: 18px; }
+body.checkout-classico .woocommerce-checkout dt.variation-TravellersInfo {
+    position: relative;
+    bottom: 10px;
+    text-align: left;
+}
+body.checkout-classico .woocommerce-checkout dd.variation-TravellersInfo {
+    position: relative;
+    bottom: 10px;
+    font-weight: 400;
+}
+body.checkout-classico .woocommerce-checkout dd.variation-TravellersInfo strong { font-weight: 400; }
+body.checkout-classico .woocommerce-checkout dd.variation-TravellersInfo p:after { content: ")"; }
+body.checkout-classico .woocommerce-checkout dd.variation-TravellersInfo strong:after {
+    margin-left: 2px;
+    content: "(";
+    font-weight: 400;
+}
+
+/* ── PRODUCT TOTAL / TFOOT ──────────────────────────────── */
+body.checkout-classico .woocommerce-checkout td.product-total {
+    background-color: #f6f6f6;
+    text-align: center;
+}
+body.checkout-classico .woocommerce-checkout tr.fee {
+    background-color: var(--cc-green-mint);
+}
+body.checkout-classico .woocommerce-checkout tfoot tr th {
+    border-top: 0;
+    border-bottom: 0 !important;
+    margin: 0;
+}
+body.checkout-classico .woocommerce-checkout tfoot tr td { text-align: center; }
+body.checkout-classico .woocommerce-checkout tfoot tr.order-total td {
+    padding: 0 2px !important;
+    position: relative;
+}
+body.checkout-classico .woocommerce-checkout tfoot tr.order-total th { border-top: 0 !important; }
+
+/* ── PAYMENT OPTIONS ────────────────────────────────────── */
+body.checkout-classico div#payment {
+    background: var(--cc-green-mint) !important;
+}
+body.checkout-classico .woocommerce-checkout ul.wc_payment_methods {
+    background-color: var(--cc-green-light);
+    font-weight: 400;
+    color: black;
+    border-bottom: 1px solid var(--cc-green-light) !important;
+}
+body.checkout-classico .woocommerce-checkout ul.wc_payment_methods li label {
+    color: white;
+    font-weight: 500;
+}
+body.checkout-classico .woocommerce-checkout div.place-order {
+    background-color: var(--cc-green-light);
+}
+body.checkout-classico .woocommerce-checkout .woocommerce-privacy-policy-text a { color: blue; }
+body.checkout-classico .woocommerce-checkout fieldset label {
+    color: black !important;
+    font-weight: 300 !important;
+}
+body.checkout-classico .woocommerce-checkout input[type='radio'] {
+    display: none;
+    float: left;
+}
+body.checkout-classico .woocommerce-checkout input[type='radio']+label:before {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: 2px;
+    left: -0.5px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+    margin-right: 5px;
+}
+body.checkout-classico .woocommerce-checkout input[type='radio']:checked+label:before {
+    background-color: #44b9a6;
+}
+body.checkout-classico .woocommerce-checkout .payment_box {
+    background-color: #f5f4f5 !important;
+    font-weight: 400;
+}
+body.checkout-classico .woocommerce-checkout .payment_box:before {
+    border: 1em solid #f5f4f5 !important;
+    border-right-color: transparent !important;
+    border-left-color: transparent !important;
+    border-top-color: transparent !important;
+}
+
+/* ── TRIP EXTRAS ────────────────────────────────────────── */
+body.checkout-classico dt.variation-TripExtras {
+    position: relative;
+    bottom: 10px;
+    text-align: left;
+    font-size: 18px;
+}
+body.checkout-classico .variation-TripExtras {
+    font-size: 18px;
+    float: left;
+}
+body.checkout-classico dd.variation-TripExtras {
+    margin-top: -11px !important;
+}
+body.checkout-classico dd.variation-TripExtras strong { font-weight: 100; }
+
+/* ── ERROS / NOTICES ────────────────────────────────────── */
+body.checkout-classico .woocommerce-checkout ul.woocommerce-error {
+    padding: 1em 2em 1em 3.5em;
+    margin: 0;
+}
+body.checkout-classico .woocommerce-checkout ul.woocommerce-error li {
+    margin-bottom: 5px !important;
+}
+
+/* ── ORDER DETAILS WRAPPER (thank you page) ─────────────── */
+body.checkout-classico .woocommerce-checkout .order-details-wrapper {
+    border-top: 3px solid var(--cc-green) !important;
+    border-radius: var(--cc-radius) !important;
+    border-spacing: 0px !important;
+    box-shadow: var(--cc-shadow);
+}
+body.checkout-classico form.woocommerce-checkout h3 {
+    padding: 0 0 20px;
+}
+body.checkout-classico .woocommerce table.shop_table {
+    border-spacing: 0px !important;
+    border-radius: unset;
+}
+body.checkout-classico #crumbs { display: none; }
+
+/* ── RESPONSIVO ─────────────────────────────────────────── */
+@media (max-width: 767px) {
+    body.checkout-classico .woocommerce-checkout .checkout,
+    body.checkout-classico form.woocommerce-checkout {
+        flex-direction: column !important;
+        gap: 0 !important;
+    }
+    body.checkout-classico .woocommerce-checkout .checkout #customer_details,
+    body.checkout-classico form.woocommerce-checkout #customer_details,
+    body.checkout-classico .woocommerce-checkout .checkout #order_review,
+    body.checkout-classico form.woocommerce-checkout #order_review {
+        flex: 0 0 100% !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+    body.checkout-classico .woocommerce-checkout .checkout_coupon {
+        width: 100% !important;
+    }
+    body.checkout-classico .woocommerce-checkout div.col-2 {
+        margin-top: 20px;
+    }
+    body.checkout-classico .woocommerce-checkout #order_review {
+        margin-top: 20px;
+    }
+    body.checkout-classico .woocommerce-checkout .variation-Package { font-size: 18px !important; }
+    body.checkout-classico .woocommerce-checkout .variation-TripBookingInfo { font-size: 16px !important; }
+}
+
+@media (min-width: 1042px) {
+    body.checkout-classico .woocommerce-checkout dd.variation-TravellersInfo {
+        bottom: 0px !important;
+    }
+}

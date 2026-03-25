@@ -1,0 +1,1169 @@
+/* ============================================================
+   IMPORTAÇÃO DE FONTES - Source Serif Pro (com ligaduras)
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+/* ============================================================
+   PlanetaExo — Checkout Novo (Clean Version)
+   Baseado na versão funcional do planetaexo.com/trips
+   CSS limpo, sem heranças problemáticas
+   Escopado em body.checkout-novo
+   ============================================================ */
+
+/* ── VARIÁVEIS ──────────────────────────────────────────── */
+body.checkout-novo {
+    --green-primary:   rgb(38, 120, 110);
+    --green-light:     rgb(38, 120, 110, 0.25);
+    --green-mint:      #83CEC1;
+    --green-hover:     #6db9ac;
+    --orange:          #e48e45;
+    --orange-dark:     #c18048;
+    --shadow:          0 4px 4px rgba(28,32,17,0.32), 0 4px 40px rgba(28,32,17,0.04);
+    --radius:          4px;
+    --bg:              #ffffff;
+    --bg-gray:         #f6f6f6;
+    --font-body:       'Source Serif Pro', serif;
+}
+
+/* ── ATIVA LIGADURAS (LIGATURES) EM TODOS OS ELEMENTOS ──── */
+body.checkout-novo *:not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) {
+    font-feature-settings: 'liga' 1, 'clig' 1, 'dlig' 1 !important;
+    -webkit-font-feature-settings: 'liga' 1, 'clig' 1, 'dlig' 1 !important;
+    -moz-font-feature-settings: 'liga' 1, 'clig' 1, 'dlig' 1 !important;
+    text-rendering: optimizeLegibility !important;
+}
+
+/* ── RESET GLOBAL ───────────────────────────────────────── */
+body.checkout-novo * {
+    box-sizing: border-box;
+    border: none!important;
+}
+
+/* ── LOGO DO HEADER CENTRALIZADA ────────────────────────── */
+body.checkout-novo header,
+body.checkout-novo .site-header,
+body.checkout-novo #masthead {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+body.checkout-novo .site-branding,
+body.checkout-novo .custom-logo-link,
+body.checkout-novo .site-logo {
+    margin: 0 auto !important;
+    text-align: center !important;
+    display: block !important;
+}
+
+/* ── BOTÕES GOOGLE PAY / APPLE PAY ─────────────────────── */
+body.checkout-novo .gpay-card-info-container-fill,
+body.checkout-novo #google-button-container {
+    width: 90% !important;
+}
+
+/* ── CONTAINER PRINCIPAL ────────────────────────────────── */
+body.checkout-novo .checkout-novo-wrapper {
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ── WOOCOMMERCE WRAPPER ────────────────────────────────── */
+body.checkout-novo .woocommerce {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ══════════════════════════════════════════════════════════
+   REORDENAÇÃO DE CAMPOS - CPF ABAIXO DE COUNTRY
+   ══════════════════════════════════════════════════════════ */
+body.checkout-novo .woocommerce-billing-fields__field-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* ESCONDE CAMPOS NÃO UTILIZADOS */
+body.checkout-novo #billing_persontype_field,
+body.checkout-novo #billing_cnpj_field {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -9999px !important;
+}
+
+/* Order dos campos (menor = mais acima) */
+body.checkout-novo #billing_first_name_field { order: 1 !important; }
+body.checkout-novo #billing_last_name_field { order: 2 !important; }
+body.checkout-novo #billing_country_field { order: 3 !important; }
+body.checkout-novo #billing_cpf_field { order: 4 !important; }  /* CPF agora vem depois */
+body.checkout-novo #billing_passport_field { order: 4 !important; }  /* Passport na mesma posição */
+body.checkout-novo #billing_phone_field { order: 5 !important; }
+body.checkout-novo #billing_email_field { order: 6 !important; }
+body.checkout-novo #billing_address_1_field { order: 7 !important; }
+body.checkout-novo #billing_address_2_field { order: 8 !important; }
+body.checkout-novo #billing_neighborhood_field { order: 9 !important; }
+body.checkout-novo #billing_city_field { order: 10 !important; }
+body.checkout-novo #billing_state_field { order: 11 !important; }
+body.checkout-novo #billing_postcode_field { order: 12 !important; }
+
+/* ── FORMULÁRIO DE CUPOM ────────────────────────────────── */
+body.checkout-novo .woocommerce-form-coupon-toggle {
+    order: 999 !important; /* Move para o final */
+    width: 100%;
+    margin-top: 20px !important;
+}
+
+body.checkout-novo .woocommerce-info {
+    margin: 1em 0 2em;
+    border-top: 3px solid var(--green-primary) !important;
+}
+
+body.checkout-novo .woocommerce-info::before {
+    color: var(--green-primary);
+}
+
+body.checkout-novo .checkout_coupon {
+    border-top: 3px solid var(--green-primary) !important;
+    margin: 0.5em 0 1em !important;
+    width: 100%;
+    padding: 10px !important;
+    box-shadow: var(--shadow);
+    order: 1000 !important; /* Move para depois do toggle */
+}
+
+body.checkout-novo .checkout_coupon .form-row-first {
+    width: 100% !important;
+}
+
+body.checkout-novo .checkout_coupon .form-row-last {
+    display: flex !important;
+    flex-direction: row-reverse !important;
+    float: none !important;
+    width: 100% !important;
+}
+
+body.checkout-novo .checkout_coupon button {
+    background-color: var(--orange) !important;
+    color: white !important;
+}
+
+body.checkout-novo .checkout_coupon button:hover {
+    background-color: var(--orange-dark) !important;
+    color: #e7e4e4 !important;
+}
+
+/* ── FORM CHECKOUT (LAYOUT 2 COLUNAS) ───────────────────── */
+body.checkout-novo form.woocommerce-checkout,
+body.checkout-novo .woocommerce-checkout form.checkout {
+    display: flex !important;
+    flex-flow: row wrap !important;
+    gap: 20px !important;
+    order: 2 !important; /* Form vem antes do cupom */
+}
+
+/* Notices ocupam linha completa */
+body.checkout-novo .woocommerce-NoticeGroup {
+    flex: 1 0 100% !important;
+    width: 100% !important;
+}
+
+/* Coluna esquerda: customer details (container transparente) */
+body.checkout-novo #customer_details {
+    flex: 1 1 calc(50% - 10px) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 30px !important; /* Espaçamento entre os boxes */
+    width: auto !important;
+    float: none !important;
+    background: transparent !important; /* Sem box no container */
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    border-top: none !important;
+    overflow: visible !important;
+}
+
+body.checkout-novo .col-1 {
+    overflow: visible !important;
+}
+
+/* Coluna direita: order review */
+body.checkout-novo #order_review {
+    flex: 1 1 calc(50% - 10px) !important;
+    width: auto !important;
+    min-width: 0 !important; /* Permite ocupar todo espaço do flex container */
+    float: none !important;
+}
+
+body.checkout-novo #order_review_heading {
+    display: none !important;
+}
+
+/* ── CARDS (COL-1 E COL-2) ──────────────────────────────── */
+/* COL-1 = BOX PARA BILLING DETAILS */
+body.checkout-novo .col-1 {
+    width: 100% !important;
+    float: none !important;
+    background: var(--bg) !important;
+    padding: 0 24px 30px 24px !important;
+    box-shadow: var(--shadow) !important;
+    border-radius: var(--radius) !important;
+    border-top: 3px solid var(--green-primary) !important;
+}
+
+/* COL-2 = BOX SEPARADO IGUAL AO BILLING DETAILS */
+body.checkout-novo .col-2 {
+    width: 100% !important;
+    float: none !important;
+    background: var(--bg) !important;
+    padding: 0 !important;
+    box-shadow: var(--shadow) !important;
+    border-radius: var(--radius) !important;
+    border-top: 3px solid var(--green-primary) !important;
+    margin-top: 0 !important; /* Gap do flexbox cuida do espaçamento */
+}
+
+body.checkout-novo .col-1 {
+    padding-bottom: 20px !important;
+}
+
+/* ── SELECT2 ────────────────────────────────────────────── */
+body.checkout-novo p#billing_persontype_field span.select2,
+body.checkout-novo .select2-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: block !important;
+}
+
+body.checkout-novo .select2-container--default .select2-selection--single {
+    padding: 22px;
+    border-radius: 8px !important;
+    border: 1px solid #ddd !important;
+    height: 50px !important;
+    min-height: 50px !important;
+    max-height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+}
+
+body.checkout-novo .select2-container .select2-selection--single .select2-selection__rendered {
+    position: relative;
+    bottom: 2px !important;
+    right: 10px !important;
+    font-family: var(--font-body) !important;
+}
+
+body.checkout-novo .select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 8px;
+}
+
+/* ── SELECT2 DROPDOWN (lista de opções) ────────────────────── */
+body.checkout-novo .select2-dropdown,
+.select2-container--default.select2-container--open .select2-dropdown {
+    border: 1px solid #ddd !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+    background: #fff !important;
+    z-index: 99999 !important;
+    margin-top: 4px !important;
+}
+
+/* Força dropdown abrir para baixo */
+body.checkout-novo .select2-dropdown--above {
+    margin-top: -4px !important;
+}
+
+body.checkout-novo .select2-dropdown--below {
+    margin-top: 4px !important;
+}
+
+body.checkout-novo .select2-results,
+.select2-results {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+body.checkout-novo .select2-results__options,
+.select2-results__options {
+    list-style: none !important;
+    padding: 4px 0 !important;
+    margin: 0 !important;
+}
+
+body.checkout-novo .select2-results__option,
+.select2-results__option {
+    padding: 10px 16px !important;
+    font-size: 14px !important;
+    color: #333 !important;
+    background: #fff !important;
+    cursor: pointer !important;
+    transition: background-color 0.2s ease !important;
+    font-family: var(--font-body) !important;
+}
+
+body.checkout-novo .select2-results__option--highlighted,
+.select2-results__option--highlighted,
+body.checkout-novo .select2-results__option[aria-selected="true"],
+.select2-results__option[aria-selected="true"] {
+    background: var(--green-primary) !important;
+    color: #fff !important;
+}
+
+body.checkout-novo .select2-results__option:hover,
+.select2-results__option:hover {
+    background: rgb(38, 120, 110) !important;
+}
+
+/* ── ORDER REVIEW WRAPPER ───────────────────────────────── */
+body.checkout-novo .order-details-wrapper {
+    background: var(--bg);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    border-top: 3px solid var(--green-primary) !important;
+    overflow: hidden;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    display: block !important;
+}
+
+/* Tabela e payment ocupam 100% dentro do wrapper */
+body.checkout-novo .order-details-wrapper > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+body.checkout-novo .order-details-wrapper h3 {
+    font-size: 26px;
+    font-weight: 600;
+    padding: 30px 20px 20px;
+    margin: 0;
+    text-transform: none;
+}
+
+/* ── BOOKING SUMMARY TITLE ──────────────────────────────── */
+body.checkout-novo #order_review {
+    background: var(--bg) !important;
+    box-shadow: var(--shadow) !important;
+    border-radius: var(--radius) !important;
+    border-top: 3px solid var(--green-primary) !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin-top: 30px !important;
+}
+
+/* MARGIN TOP ESPECÍFICO COM ESPECIFICIDADE MÁXIMA */
+body.checkout-novo form.checkout.woocommerce-checkout #order_review,
+body.checkout-novo form.checkout.woocommerce-checkout #order_review_heading,
+html body.checkout-novo form.checkout.woocommerce-checkout #order_review,
+html body.checkout-novo form.checkout.woocommerce-checkout #order_review_heading {
+    background: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-top: 30px !important;
+}
+
+body.checkout-novo .booking-summary-title,
+body.checkout-novo #order_review .booking-summary-title {
+    font-size: 26px !important;
+    font-weight: 600 !important;
+    padding: 30px 20px 20px !important;
+    margin: 0 !important;
+    text-transform: none !important;
+    color: #000 !important;
+    background: #fff !important;
+    border: none !important;
+}
+
+/* ── BILLING DETAILS TITLE - ALINHAMENTO COM BOOKING SUMMARY ── */
+html body.checkout-novo .woocommerce-billing-fields h3,
+body.checkout-novo .col-1 .woocommerce-billing-fields h3,
+body.checkout-novo #customer_details .woocommerce-billing-fields h3 {
+    font-size: 26px !important;
+    font-weight: 600 !important;
+    padding: 0px 0 20px !important;
+    margin: 0 !important;
+    text-transform: none !important;
+    color: #000 !important;
+    background: transparent !important;
+    border: none !important;
+}
+
+/* ── REMOVE MARGIN BOTTOM DE TODOS OS ELEMENTOS DO ORDER REVIEW ── */
+html body.checkout-novo .woocommerce-checkout-review-order,
+html body.checkout-novo #order_review,
+html body.checkout-novo .woocommerce-checkout-review-order-table,
+html body.checkout-novo table.shop_table,
+html body.checkout-novo #payment,
+body.checkout-novo form.checkout.woocommerce-checkout .woocommerce-checkout-review-order-table,
+body.checkout-novo form.checkout.woocommerce-checkout #payment,
+body.woocommerce-checkout body.checkout-novo form.checkout.woocommerce-checkout .woocommerce-checkout-review-order-table,
+body.woocommerce-checkout body.checkout-novo form.checkout.woocommerce-checkout #payment {
+    margin-bottom: 0px !important;
+    margin: 0 !important;
+}
+
+/* ── TABELA DO ORDER REVIEW ─────────────────────────────── */
+body.checkout-novo table.shop_table,
+body.checkout-novo .woocommerce-checkout-review-order-table,
+body.checkout-novo table.woocommerce-checkout-review-order-table {
+    border-spacing: 0 !important;
+    border-radius: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    margin-bottom: 0 !important;
+    table-layout: fixed !important; /* Força colunas a ocuparem todo o espaço */
+}
+
+/* Colunas: Product ~65% | Subtotal/Total ~35% — preenchem 100% da largura */
+body.checkout-novo table.shop_table .product-name,
+body.checkout-novo .woocommerce-checkout-review-order-table .product-name,
+body.checkout-novo table.shop_table thead th.product-name,
+body.checkout-novo table.shop_table tfoot th {
+    width: 65% !important;
+}
+body.checkout-novo table.shop_table .product-total,
+body.checkout-novo .woocommerce-checkout-review-order-table .product-total,
+body.checkout-novo table.shop_table thead th.product-total,
+body.checkout-novo table.shop_table tfoot td {
+    width: 35% !important;
+}
+
+/* Garante que valores (subtotal, total) ocupem todo o espaço */
+body.checkout-novo table.shop_table tbody td,
+body.checkout-novo table.shop_table tfoot td,
+body.checkout-novo .woocommerce-checkout-review-order-table tbody td,
+body.checkout-novo .woocommerce-checkout-review-order-table tfoot td {
+    box-sizing: border-box !important;
+}
+
+body.checkout-novo table.shop_table thead th {
+    display: none;
+}
+
+/* Product Card */
+body.checkout-novo td.product-name {
+    color: black;
+    background-color: var(--bg-gray) !important;
+    padding: 0px 220px 0px 13px !important;
+    font-family: var(--font-body) !important;
+    border-bottom: 0;
+    font-weight: 600;
+}
+
+body.checkout-novo td.product-name:first-line {
+    color: black;
+    font-weight: 600;
+    font-family: var(--font-body) !important;
+}
+
+body.checkout-novo dl.variation {
+    margin-top: 10px;
+    font-weight: 400;
+    font-family: var(--font-body) !important;
+}
+
+body.checkout-novo dl.variation dt,
+body.checkout-novo dl.variation dd {
+    font-family: var(--font-body) !important;
+}
+
+body.checkout-novo dl.variation dd hr {
+    display: none;
+}
+
+/* Package */
+body.checkout-novo .variation-Package {
+    color: var(--green-primary);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+body.checkout-novo dd.variation-Package {
+    text-align: left;
+}
+
+/* Trip Booking Info */
+body.checkout-novo .variation-TripBookingInfo {
+    font-size: 18px;
+}
+
+body.checkout-novo dt.variation-TripBookingInfo {
+    margin-top: 0.5em !important;
+    position: relative;
+    bottom: 10px;
+}
+
+body.checkout-novo dd.variation-TripBookingInfo {
+    margin: 0 !important;
+    text-align: left;
+    font-weight: 400;
+}
+
+body.checkout-novo dd.variation-TripBookingInfo strong {
+    display: none;
+}
+
+body.checkout-novo dd.variation-TripBookingInfo p:before {
+    content: "Starting Date: ";
+}
+
+/* Travellers Info */
+body.checkout-novo .variation-TravellersInfo {
+    font-size: 18px;
+}
+
+body.checkout-novo dt.variation-TravellersInfo {
+    position: relative;
+    bottom: 10px;
+    text-align: left;
+}
+
+body.checkout-novo dd.variation-TravellersInfo {
+    position: relative;
+    bottom: 10px;
+    font-weight: 400;
+}
+
+body.checkout-novo dd.variation-TravellersInfo strong {
+    font-weight: 400;
+}
+
+body.checkout-novo dd.variation-TravellersInfo p:after {
+    content: ")";
+}
+
+body.checkout-novo dd.variation-TravellersInfo strong:after {
+    margin-left: 2px;
+    content: "(";
+    font-weight: 400;
+}
+
+/* Trip Extras */
+body.checkout-novo dt.variation-TripExtras {
+    position: relative;
+    bottom: 10px;
+    text-align: left;
+    font-size: 18px;
+}
+
+body.checkout-novo .variation-TripExtras {
+    font-size: 18px;
+    float: left;
+}
+
+body.checkout-novo dd.variation-TripExtras {
+    margin-top: -11px !important;
+}
+
+body.checkout-novo dd.variation-TripExtras strong {
+    font-weight: 100;
+}
+
+/* Product Total */
+body.checkout-novo td.product-total {
+    background-color: var(--bg-gray);
+    text-align: center;
+    padding: 20px !important;
+    font-family: var(--font-body) !important;
+}
+
+/* Fee (desconto) */
+body.checkout-novo tr.fee {
+    background-color: var(--green-mint);
+}
+
+body.checkout-novo tr.fee th,
+body.checkout-novo tr.fee td {
+    padding: 10px 12px!important;
+}
+
+/* Footer da Tabela */
+body.checkout-novo tfoot tr th {
+    border-top: 0;
+    border-bottom: 0 !important;
+    margin: 0;
+    padding: 12px 20px;
+    font-family: var(--font-body) !important;
+}
+
+body.checkout-novo tfoot tr td {
+    text-align: center;
+    padding: 12px 20px;
+    font-family: var(--font-body) !important;
+}
+
+body.checkout-novo tfoot tr.order-total th {
+    border-top: 0 !important;
+}
+
+body.checkout-novo tfoot tr.order-total td {
+    padding: 0 20px !important;
+    position: relative;
+}
+
+/* ── PAYMENT (DENTRO DO ORDER-DETAILS-WRAPPER) ──────────── */
+body.checkout-novo div#payment {
+    background: var(--green-mint) !important;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+}
+
+body.checkout-novo ul.wc_payment_methods {
+    background-color: #6db9ac!important;
+    font-weight: 400;
+    color: #fff;
+    font-family: var(--font-body) !important;
+    border-bottom:none!important;
+    padding: 15px 20px;
+    margin: 0;
+}
+
+body.checkout-novo ul.wc_payment_methods li {
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+    padding: 10px 0 !important;
+}
+
+body.checkout-novo ul.wc_payment_methods li label {
+    color: 000;
+    font-weight: 500;
+    font-family: var(--font-body) !important;
+}
+
+body.checkout-novo .woocommerce-terms-and-conditions-wrapper,
+body.checkout-novo .woocommerce-privacy-policy-text,
+body.checkout-novo .woocommerce-privacy-policy-text p,
+body.checkout-novo .woocommerce-privacy-policy-text a {
+    font-family: var(--font-body) !important;
+    font-size: 18px!important;
+    font-weight: 500!important;
+}
+
+body.checkout-novo .woocommerce-privacy-policy-text a {
+    color: blue;
+}
+
+/* Texto do Pix */
+body.checkout-novo .pix-por-piggly--step,
+body.checkout-novo .pix-por-piggly--step p {
+    font-family: var(--font-body) !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   ALINHAMENTO CHECKBOX STRIPE - SAVE PAYMENT
+   ══════════════════════════════════════════════════════════ */
+body.checkout-novo .woocommerce-SavedPaymentMethods-saveNew,
+body.checkout-novo p.woocommerce-SavedPaymentMethods-saveNew {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin: 15px 0 !important;
+}
+
+body.checkout-novo .woocommerce-SavedPaymentMethods-saveNew input[type="checkbox"],
+body.checkout-novo #wc-stripe-new-payment-method {
+    width: auto !important;
+    min-width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+body.checkout-novo .woocommerce-SavedPaymentMethods-saveNew label,
+body.checkout-novo label[for="wc-stripe-new-payment-method"] {
+    display: inline !important;
+    margin: 0 !important;
+    line-height: 1.4 !important;
+    font-size: 14px !important;
+    font-family: var(--font-body) !important;
+}
+
+body.checkout-novo fieldset label {
+    color: black !important;
+    font-weight: 300 !important;
+    font-family: var(--font-body) !important;
+}
+
+/* Radio Customizado */
+body.checkout-novo input[type='radio'] {
+    display: none;
+    float: left;
+}
+
+body.checkout-novo input[type='radio'] + label:before {
+    width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    top: 2px;
+    left: -0.5px;
+    position: relative;
+    background-color: #d1d3d1;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+    border: 2px solid white;
+    margin-right: 5px;
+}
+
+body.checkout-novo input[type='radio']:checked + label:before {
+    background-color: #44b9a6;
+}
+
+/* Payment Box */
+body.checkout-novo .payment_box {
+    background-color: #f5f4f5 !important;
+    font-weight: 400;
+    padding: 15px 20px !important;
+    font-family: var(--font-body) !important;
+}
+
+body.checkout-novo .payment_box:before {
+    border: 1em solid #f5f4f5 !important;
+    border-right-color: transparent !important;
+    border-left-color: transparent !important;
+    border-top-color: transparent !important;
+}
+
+/* Place Order (dentro de div.place-order) */
+/* ══════════════════════════════════════════════════════════
+   PLACE ORDER - REMOVE PADDING/MARGIN E AJUSTA COR
+   ESPECIFICIDADE MÁXIMA PARA SOBRESCREVER CHECKOUT-TRIPS
+   ══════════════════════════════════════════════════════════ */
+html body.checkout-novo form.checkout.woocommerce-checkout #payment .place-order,
+body.checkout-novo form.checkout.woocommerce-checkout #payment div.place-order,
+body.checkout-novo form.woocommerce-checkout #payment .place-order,
+body.checkout-novo #payment .place-order,
+body.checkout-novo div.place-order {
+    background-color: #6db9ac !important;
+    padding: 20px !important;
+    padding-top: 0px !important;
+    margin: 0 !important;
+    margin-top: 0 !important;
+    border-top: none!important;
+}
+
+body.checkout-novo button#place_order {
+    background-color: #ffffff !important;
+    color: #44b9a6 !important;
+    border-radius: var(--radius) !important;
+    border: none !important;
+    box-shadow: none !important;
+    letter-spacing: 0 !important;
+    font-size: 1rem !important;
+    text-transform: none !important;
+    padding: 15px 30px !important;
+    width: 100%;
+}
+
+body.checkout-novo button#place_order:hover {
+    color: var(--green-hover) !important;
+    background-color: #ffffff !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ── NOTICES E ERROS ────────────────────────────────────── */
+body.checkout-novo ul.woocommerce-error,
+body.checkout-novo .woocommerce-notice--error,
+body.checkout-novo .woocommerce-NoticeGroup .woocommerce-error {
+    padding: 1em 2em 1em 3.5em !important;
+    margin: 0 0 20px !important;
+    color: #b91c1c !important;
+    background: #fff8f8 !important;
+    border-left: 4px solid #dc2626 !important;
+}
+
+body.checkout-novo ul.woocommerce-error li,
+body.checkout-novo .woocommerce-notice--error li {
+    margin-bottom: 5px !important;
+}
+
+body.checkout-novo ul.woocommerce-error,
+body.checkout-novo ul.woocommerce-error li,
+body.checkout-novo ul.woocommerce-error li strong,
+body.checkout-novo .woocommerce-notice--error,
+body.checkout-novo .woocommerce-notice--error li,
+body.checkout-novo .woocommerce-notice--error li strong,
+body.checkout-novo .woocommerce-NoticeGroup .woocommerce-error,
+body.checkout-novo .woocommerce-NoticeGroup .woocommerce-error li,
+body.checkout-novo .woocommerce-NoticeGroup .woocommerce-error li strong {
+    color: #b91c1c !important;
+}
+
+body.checkout-novo #crumbs {
+    display: none;
+}
+
+/* ── THANK YOU PAGE ─────────────────────────────────────── */
+body.checkout-novo .woocommerce-thankyou-order-received {
+    text-align: center;
+}
+
+body.checkout-novo ul.order_details {
+    display: flex;
+    place-content: center;
+    margin-top: 30px;
+}
+
+body.checkout-novo ul.order_details::before,
+body.checkout-novo ul.order_details::after {
+    content: none;
+}
+
+body.checkout-novo ul.order_details li {
+    font-size: 18px;
+}
+
+body.checkout-novo ul.order_details li strong {
+    font-size: 18px;
+}
+
+/* ── HEADINGS ───────────────────────────────────────────── */
+body.checkout-novo form.woocommerce-checkout h3 {
+    font-size: 26px;
+    font-weight: 600;
+    padding: 0 0 20px;
+    margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════
+   CAMPOS 100% LARGURA - TODOS UM ABAIXO DO OUTRO
+   ══════════════════════════════════════════════════════════ */
+
+/* TODOS os campos form-row ocupam 100% da largura */
+body.checkout-novo .form-row,
+body.checkout-novo p.form-row,
+body.checkout-novo .woocommerce-billing-fields__field-wrapper .form-row,
+body.checkout-novo .woocommerce-billing-fields__field-wrapper p.form-row,
+body.checkout-novo .woocommerce-additional-fields__field-wrapper .form-row,
+body.checkout-novo .woocommerce-additional-fields__field-wrapper p.form-row {
+    width: 100% !important;
+    float: none !important;
+    clear: both !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* Remove qualquer float ou largura parcial - FORÇA MÁXIMA */
+body.checkout-novo .form-row-first,
+body.checkout-novo .form-row-last,
+body.checkout-novo .form-row-wide,
+body.checkout-novo p.form-row-first,
+body.checkout-novo p.form-row-last,
+body.checkout-novo p.form-row-wide,
+body.checkout-novo .woocommerce-billing-fields__field-wrapper .form-row-first,
+body.checkout-novo .woocommerce-billing-fields__field-wrapper .form-row-last,
+body.checkout-novo .woocommerce-billing-fields__field-wrapper .form-row-wide {
+    width: 100% !important;
+    float: none !important;
+    clear: both !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+/* ESPECÍFICO: First Name e Last Name */
+body.checkout-novo #billing_first_name_field,
+body.checkout-novo #billing_last_name_field,
+body.checkout-novo p#billing_first_name_field,
+body.checkout-novo p#billing_last_name_field {
+    width: 100% !important;
+    float: none !important;
+    clear: both !important;
+}
+
+/* ESPECÍFICO: Number e Neighborhood */
+body.checkout-novo #billing_number_field,
+body.checkout-novo #billing_neighborhood_field,
+body.checkout-novo p#billing_number_field,
+body.checkout-novo p#billing_neighborhood_field {
+    width: 100% !important;
+    float: none !important;
+    clear: both !important;
+}
+
+/* ESPECÍFICO: Address Line 2 */
+body.checkout-novo #billing_address_2_field,
+body.checkout-novo p#billing_address_2_field {
+    width: 100% !important;
+    float: none !important;
+    clear: both !important;
+}
+
+/* Wrapper dos campos - garante flexbox vertical */
+body.checkout-novo .woocommerce-billing-fields__field-wrapper,
+body.checkout-novo .woocommerce-additional-fields__field-wrapper {
+    display: block !important;
+    width: 100% !important;
+}
+
+/* GARANTE QUE ADDITIONAL INFORMATION APAREÇA */
+body.checkout-novo .woocommerce-additional-fields,
+body.checkout-novo .woocommerce-additional-fields h3,
+body.checkout-novo .woocommerce-additional-fields__field-wrapper,
+body.checkout-novo #order_comments_field {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* PADDING DO CONTEÚDO DENTRO DO BOX */
+html body.checkout-novo .woocommerce-additional-fields,
+body.checkout-novo .col-2 .woocommerce-additional-fields,
+body.checkout-novo #customer_details .woocommerce-additional-fields {
+    margin-top: 0 !important;
+    padding: 30px 24px 30px 24px !important;
+    border-top: none !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   ESTILIZAÇÃO DO ADDITIONAL INFORMATION
+   Versão: 2.0 - BOX SEPARADO COM TÍTULO
+   ══════════════════════════════════════════════════════════ */
+
+/* MOSTRA e ESTILIZA o título "Additional Information" */
+html body.checkout-novo .woocommerce-additional-fields h3,
+body.checkout-novo .col-2 .woocommerce-additional-fields h3,
+body.checkout-novo #customer_details .woocommerce-additional-fields h3,
+body.checkout-novo div.col-2 div.woocommerce-additional-fields h3 {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    font-size: 26px !important;
+    font-weight: 600 !important;
+    padding: 0 0 20px !important;
+    margin: 0 !important;
+    text-transform: none !important;
+    color: #000 !important;
+    background: transparent !important;
+    border: none !important;
+    position: relative !important;
+    left: 0 !important;
+}
+
+/* Textarea de Order Notes - ESPECIFICIDADE MÁXIMA */
+html body.checkout-novo textarea#order_comments,
+body.checkout-novo .col-2 textarea#order_comments,
+body.checkout-novo #customer_details textarea#order_comments,
+body.checkout-novo .woocommerce-additional-fields textarea#order_comments,
+body.checkout-novo #order_comments_field textarea#order_comments {
+    width: 100% !important;
+    min-height: 100px !important;
+    border-radius: 8px !important;
+    border: 1px solid #ddd !important;
+    padding: 14px 16px !important;
+    font-size: 15px !important;
+    font-family: var(--font-body) !important;
+    line-height: 1.6 !important;
+    resize: vertical !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+    background: #fff !important;
+    color: #333 !important;
+}
+
+html body.checkout-novo textarea#order_comments:focus,
+body.checkout-novo .col-2 textarea#order_comments:focus {
+    border-color: var(--green-primary) !important;
+    box-shadow: 0 0 0 3px rgba(38, 120, 110, 0.15) !important;
+    outline: none !important;
+    background: #fafafa !important;
+}
+
+/* Placeholder styling */
+html body.checkout-novo textarea#order_comments::placeholder {
+    color: #999 !important;
+    font-style: italic !important;
+    opacity: 0.7 !important;
+}
+
+/* Label do campo - ESPECIFICIDADE MÁXIMA */
+html body.checkout-novo #order_comments_field label,
+body.checkout-novo .col-2 #order_comments_field label,
+body.checkout-novo .woocommerce-additional-fields #order_comments_field label {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    color: #666 !important;
+    font-family: var(--font-body) !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    margin-bottom: 10px !important;
+    display: block !important;
+}
+
+/* Remove quebra de linha no (optional) */
+html body.checkout-novo #order_comments_field label span.optional,
+body.checkout-novo #order_comments_field label .optional {
+    white-space: nowrap !important;
+    display: inline !important;
+}
+
+/* Campo wrapper com espaçamento */
+body.checkout-novo #order_comments_field {
+    margin-bottom: 0 !important;
+}
+
+/* ══════════════════════════════════════════════════════════
+   INPUTS E SELECTS ARREDONDADOS
+   ══════════════════════════════════════════════════════════ */
+
+/* Todos os inputs de texto */
+body.checkout-novo input[type="text"],
+body.checkout-novo input[type="email"],
+body.checkout-novo input[type="tel"],
+body.checkout-novo input[type="number"],
+body.checkout-novo input[type="password"],
+body.checkout-novo textarea,
+body.checkout-novo select,
+body.checkout-novo .input-text {
+    border-radius: 8px !important;
+    border: 1px solid #ddd !important;
+    padding: 12px 16px !important;
+    font-size: 14px !important;
+    transition: border-color 0.3s ease !important;
+    font-family: var(--font-body) !important;
+}
+
+/* Hover e Focus */
+body.checkout-novo input[type="text"]:focus,
+body.checkout-novo input[type="email"]:focus,
+body.checkout-novo input[type="tel"]:focus,
+body.checkout-novo input[type="number"]:focus,
+body.checkout-novo input[type="password"]:focus,
+body.checkout-novo textarea:focus,
+body.checkout-novo select:focus,
+body.checkout-novo .input-text:focus {
+    border-color: var(--green-primary) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(38, 120, 110, 0.1) !important;
+}
+
+/* Select2 dropdown arredondado */
+body.checkout-novo .select2-container--default .select2-selection--single {
+    border-radius: 8px !important;
+    border: 1px solid #ddd !important;
+    padding: 8px 16px !important;
+    height: 50px !important;
+    min-height: 50px !important;
+    max-height: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    box-sizing: border-box !important;
+}
+
+/* Textarea */
+body.checkout-novo textarea {
+    min-height: 80px !important;
+    resize: vertical !important;
+}
+
+/* Labels com espaçamento melhor */
+body.checkout-novo .form-row label {
+    display: block !important;
+    margin-bottom: 0px !important;
+    font-weight: 500 !important;
+    font-family: var(--font-body) !important;
+    color: #333 !important;
+    font-size: 13px !important;
+    text-transform: none!important;
+}
+
+/* ── RESPONSIVO ─────────────────────────────────────────── */
+@media (max-width: 767px) {
+    body.checkout-novo form.woocommerce-checkout,
+    body.checkout-novo .woocommerce-checkout form.checkout {
+        flex-direction: column !important;
+        gap: 0 !important;
+    }
+    
+    body.checkout-novo #customer_details,
+    body.checkout-novo #order_review {
+        flex: 0 0 100% !important;
+        width: 100% !important;
+    }
+    
+    body.checkout-novo .checkout_coupon {
+        width: 100% !important;
+    }
+    
+    body.checkout-novo .col-2 {
+        margin-top: 20px;
+    }
+    
+    body.checkout-novo #order_review {
+        margin-top: 20px;
+    }
+    
+    body.checkout-novo .variation-Package {
+        font-size: 18px !important;
+    }
+    
+    body.checkout-novo .variation-TripBookingInfo {
+        font-size: 16px !important;
+    }
+    
+    body.checkout-novo ul.order_details {
+        flex-flow: row wrap;
+        gap: 20px;
+    }
+    
+    body.checkout-novo ul.order_details li {
+        margin: 0 !important;
+        padding: 0;
+        border-right: none;
+        border-bottom: 1px dashed #cfc8d8;
+        padding-bottom: 20px;
+        font-size: 16px !important;
+        flex-basis: calc(50% - 10px);
+    }
+}
+
+@media (min-width: 1042px) {
+    body.checkout-novo dd.variation-TravellersInfo {
+        bottom: 0px !important;
+    }
+}
+
+/* ── AJUSTES FINAIS ─────────────────────────────────────── */
+body.checkout-novo .col2-set {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+}
+
+body.checkout-novo .col2-set .col-1,
+body.checkout-novo .col2-set .col-2 {
+    float: none !important;
+    width: 100% !important;
+    display: block !important;
+    visibility: visible !important;
+}
+
+body.checkout-novo table.shop_table td {
+    border-top: 0 !important;
+}
+
+                /* Remove fundos duplos do container geral para separar a Tabela e o Pagamento */
+                form.checkout.woocommerce-checkout #order_review, form.checkout.woocommerce-checkout #order_review_heading {
+                    background: transparent !important;
+                    box-shadow: none !important;
+                    padding: 0 !important;
+                    margin-top: 30px!important;
+                }

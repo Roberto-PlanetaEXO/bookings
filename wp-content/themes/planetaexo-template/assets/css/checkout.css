@@ -1,0 +1,1534 @@
+/* ============================================================
+   PlanetaExo — Checkout & Cart Custom CSS
+   ============================================================ */
+
+:root {
+    --pxo-green:       #44b9a6;
+    --pxo-green-dark:  #34a595;
+    --pxo-green-glow:  rgba(68,185,166,.18);
+    --pxo-dark:        #1a2a3a;
+    --pxo-gray:        #f4f5f7;
+    --pxo-border:      #44b9a6;
+    --pxo-border-idle: #c8e6e2;
+    --pxo-text:        #222;
+    --pxo-muted:       #000;
+    --pxo-radius:      12px;
+    --pxo-shadow:      0 4px 24px rgba(0,0,0,.09);
+}
+
+/* ── BODY / WRAPPER ─────────────────────────────────────── */
+body.woocommerce-checkout,
+body.woocommerce-cart {
+    background: var(--pxo-gray);
+    color: var(--pxo-text);
+    font-family: inherit;
+}
+
+/* ── CONTER SVGS DO WOOCOMMERCE BLOCKS ───────────────────── */
+body.woocommerce-checkout button svg,
+body.woocommerce-checkout a svg,
+body.woocommerce-checkout .wc-block-components-button svg,
+body.woocommerce-checkout .wc-block-components-panel__button svg,
+body.woocommerce-checkout .wc-block-components-chip svg,
+body.woocommerce-checkout .wc-block-components-notice-banner svg,
+body.woocommerce-checkout .wc-block-checkout__add-note svg,
+body.woocommerce-checkout .wc-block-components-checkout-step__edit-button svg {
+    width: auto;
+    height: 1em;
+    max-width: 1.5em;
+    max-height: 1.5em;
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+}
+
+/* ── BODY ────────────────────────────────────────────────── */
+body.woocommerce-checkout,
+body.woocommerce-cart {
+    background: #f0f3f5;
+    color: var(--pxo-text);
+}
+
+/* ── CARD BILLING ────────────────────────────────────────── */
+.woocommerce-checkout .col2-set {
+    background: #fff;
+    border-radius: var(--pxo-radius);
+    box-shadow: var(--pxo-shadow);
+    padding: 40px 44px;
+    margin-bottom: 24px;
+    display: block;
+}
+
+.woocommerce-checkout .col2-set .col-1 { width: 100%; }
+/* .woocommerce-checkout .col2-set .col-2 { display: none; } */ /* REMOVIDO - col-2 precisa aparecer */
+
+/* ── CABEÇALHO DO CARD ───────────────────────────────────── */
+.woocommerce-billing-fields h3,
+.woocommerce-checkout h3,
+.woocommerce h3#order_review_heading {
+    font-size: 1.05rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--pxo-dark);
+    margin: 0 0 4px;
+    padding: 0;
+    border: none;
+}
+
+.woocommerce-billing-fields::before {
+    content: 'Preencha seus dados para finalizar a compra';
+    display: block;
+    font-size: .87rem;
+    color: var(--pxo-muted);
+    margin: 4px 0 28px;
+}
+
+/* ── GRID CAMPOS — 2 colunas para primeiro/último nome ───── */
+.woocommerce-billing-fields__field-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 20px;
+}
+
+.woocommerce-billing-fields__field-wrapper .form-row-wide,
+.woocommerce-billing-fields__field-wrapper #billing_address_1_field,
+.woocommerce-billing-fields__field-wrapper #billing_address_2_field,
+.woocommerce-billing-fields__field-wrapper #billing_company_field,
+.woocommerce-billing-fields__field-wrapper #billing_country_field,
+.woocommerce-billing-fields__field-wrapper #billing_phone_field,
+.woocommerce-billing-fields__field-wrapper #billing_email_field {
+    grid-column: 1 / -1;
+}
+
+/* ── LABELS ──────────────────────────────────────────────── */
+.woocommerce form .form-row label,
+.woocommerce form p label {
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--pxo-muted);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    margin-bottom: 6px;
+    display: block;
+}
+.woocommerce form .form-row label .required { color: var(--pxo-green); }
+
+/* ── INPUTS / SELECT / TEXTAREA ──────────────────────────── */
+.woocommerce form .form-row input.input-text,
+.woocommerce form .form-row select,
+.woocommerce form .form-row textarea,
+.woocommerce form p input.input-text,
+.woocommerce form p select {
+    border: 1.5px solid var(--pxo-border-idle);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-size: .95rem;
+    color: var(--pxo-text);
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color .2s, box-shadow .2s;
+    height: auto;
+    outline: none;
+}
+
+.woocommerce form .form-row input.input-text:focus,
+.woocommerce form .form-row select:focus,
+.woocommerce form .form-row textarea:focus,
+.woocommerce form p input.input-text:focus {
+    border-color: var(--pxo-border);
+    box-shadow: 0 0 0 3px var(--pxo-green-glow);
+}
+
+.woocommerce form .form-row input.input-text:not(:placeholder-shown),
+.woocommerce form p input.input-text:not(:placeholder-shown) {
+    border-color: var(--pxo-border);
+}
+
+.woocommerce form .form-row.woocommerce-invalid input.input-text,
+.woocommerce form .form-row.woocommerce-invalid select {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 3px rgba(231,76,60,.12);
+}
+
+/* ── SELECT2 ─────────────────────────────────────────────── */
+.select2-container--default .select2-selection--single {
+    border: 1.5px solid var(--pxo-border-idle);
+    border-radius: 8px;
+    height: 44px;
+    padding: 10px 14px;
+    transition: border-color .2s;
+}
+.select2-container--default.select2-container--focus .select2-selection--single,
+.select2-container--default.select2-container--open  .select2-selection--single {
+    border-color: var(--pxo-border);
+    box-shadow: 0 0 0 3px var(--pxo-green-glow);
+}
+.select2-dropdown { border-color: var(--pxo-border); border-radius: 8px; }
+.select2-container--default .select2-results__option--highlighted { background: var(--pxo-green); }
+
+/* ── NOTICES ─────────────────────────────────────────────── */
+.woocommerce-info,
+.woocommerce-message {
+    border-top-color: var(--pxo-green);
+    background: #f0faf8;
+    color: var(--pxo-dark);
+}
+.woocommerce-info::before,
+.woocommerce-message::before { color: var(--pxo-green); }
+.woocommerce-error { border-top-color: #e74c3c; }
+
+/* ── RESUMO DO PEDIDO ────────────────────────────────────── */
+.woocommerce-checkout #order_review_heading,
+.woocommerce-checkout #order_review {
+    background: #fff;
+    border-radius: var(--pxo-radius);
+    box-shadow: var(--pxo-shadow);
+}
+
+.woocommerce-checkout-review-order-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.woocommerce-checkout-review-order-table th,
+.woocommerce-checkout-review-order-table td {
+    padding: 11px 0;
+    border-bottom: 1px solid #eee;
+    font-size: .93rem;
+}
+.woocommerce-checkout-review-order-table tfoot tr:last-child th,
+.woocommerce-checkout-review-order-table tfoot tr:last-child td {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--pxo-dark);
+    border-bottom: none;
+    padding-top: 16px;
+}
+.woocommerce-checkout-review-order-table .cart-subtotal th,
+.woocommerce-checkout-review-order-table .order-total th {
+    font-weight: 600;
+    color: var(--pxo-muted);
+}
+
+/* ── MÉTODOS DE PAGAMENTO ────────────────────────────────── */
+#payment {
+    background: #fff;
+    border-radius: var(--pxo-radius);
+    box-shadow: var(--pxo-shadow);
+    margin-top: 24px;
+}
+
+#payment > h3,
+.woocommerce-checkout #payment h3,
+#payment .wc-block-components-checkout-step__title {
+    font-size: .82rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: var(--pxo-muted);
+    margin: 0 0 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+#payment ul.payment_methods {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#payment ul.payment_methods li {
+    border: 1.5px solid var(--pxo-border-idle);
+    border-radius: 10px;
+    padding: 14px 18px;
+    cursor: pointer;
+    transition: border-color .2s, background .2s;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#payment ul.payment_methods li:has(input[type=radio]:checked) {
+    border-color: var(--pxo-border);
+    background: #f0faf8;
+}
+
+#payment ul.payment_methods li label {
+    font-weight: 600;
+    font-size: .93rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+#payment ul.payment_methods li img { max-height: 26px; width: auto; vertical-align: middle; }
+
+#payment ul.payment_methods li input[type=radio] {
+    accent-color: var(--pxo-green);
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.payment_box {
+    background: #f4fffe;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-top: 10px;
+    font-size: .87rem;
+    color: var(--pxo-muted);
+    border-left: 3px solid var(--pxo-green);
+    width: 100%;
+}
+
+/* ── AVISO DE ERRO ───────────────────────────────────────── */
+.woocommerce-checkout .woocommerce-error,
+#payment .woocommerce-error {
+    background: #fff8f8;
+    border: 1.5px solid #fca5a5;
+    border-top: none;
+    border-left: 4px solid #ef4444;
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: .9rem;
+    color: #7f1d1d;
+    box-shadow: none;
+    margin-bottom: 0;
+}
+.woocommerce-checkout .woocommerce-error::before,
+#payment .woocommerce-error::before { display: none; }
+
+/* ── BOTÃO PLACE ORDER ───────────────────────────────────── */
+#payment #place_order,
+.woocommerce #place_order {
+    background: var(--pxo-green);
+    border: none;
+    border-radius: 9px;
+    color: #fff;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 16px;
+    width: 100%;
+    cursor: pointer;
+    transition: background .2s, transform .1s, box-shadow .2s;
+    box-shadow: 0 4px 16px rgba(68,185,166,.38);
+    display: block;
+}
+#payment #place_order:hover {
+    background: var(--pxo-green-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(68,185,166,.45);
+}
+
+#payment .place-order {
+    padding-top: 0;
+    border-top: 1px solid #eee;
+    margin-top: 0;
+}
+
+/* ── TERMOS ──────────────────────────────────────────────── */
+.woocommerce-checkout .woocommerce-terms-and-conditions-wrapper {
+    font-size: .82rem;
+    color: var(--pxo-muted);
+    margin-bottom: 14px;
+}
+
+/* ── OCULTA "RETURN TO CART" ─────────────────────────────── */
+.woocommerce-checkout a.wc-backward,
+.woocommerce-checkout .woocommerce-button.wc-backward,
+.woocommerce-checkout a[href*="/cart/"].button,
+#payment ~ a.wc-backward,
+form.woocommerce-checkout a.wc-backward,
+.wc-block-components-checkout-return-to-cart-button,
+a.wc-block-components-checkout-return-to-cart-button,
+.wp-block-woocommerce-checkout-actions-block a.wc-block-components-checkout-return-to-cart-button,
+.wc-block-checkout__actions_row a[href*="/cart/"] {
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    opacity: 0;
+}
+
+/* ── BOTÕES GENÉRICOS ────────────────────────────────────── */
+.woocommerce a.button,
+.woocommerce button.button {
+    background: var(--pxo-green);
+    color: #fff;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    padding: 10px 20px;
+    transition: background .2s;
+}
+.woocommerce a.button:hover,
+.woocommerce button.button:hover { background: var(--pxo-green-dark); }
+
+/* ── CART ────────────────────────────────────────────────── */
+.woocommerce-cart .woocommerce { max-width: 1100px; }
+
+.woocommerce-cart .cart-collaterals .cart_totals,
+.woocommerce-cart table.cart {
+    background: #fff;
+    border-radius: var(--pxo-radius);
+    box-shadow: var(--pxo-shadow);
+}
+
+table.cart { border-collapse: collapse; width: 100%; }
+table.cart th {
+    font-size: .78rem; text-transform: uppercase; letter-spacing: .4px;
+    color: var(--pxo-muted); padding: 10px 8px; border-bottom: 2px solid #eee;
+}
+table.cart td { padding: 14px 8px; border-bottom: 1px solid #eee; vertical-align: middle; }
+table.cart .product-name a { color: var(--pxo-dark); font-weight: 600; text-decoration: none; }
+table.cart input[type=number] {
+    width: 64px; border: 1.5px solid var(--pxo-border-idle);
+    border-radius: 6px; padding: 6px 8px; text-align: center; font-size: .95rem;
+}
+
+.cart-collaterals .cart_totals { float: right; width: 100%; max-width: 400px; }
+.cart_totals h2 {
+    font-size: .9rem; font-weight: 700; text-transform: uppercase;
+    border-bottom: 2px solid var(--pxo-green); padding-bottom: 10px; margin-bottom: 16px;
+}
+.cart_totals table { width: 100%; border-collapse: collapse; }
+.cart_totals table th,
+.cart_totals table td { padding: 10px 4px; border-bottom: 1px solid #eee; font-size: .93rem; }
+.cart_totals .order-total th,
+.cart_totals .order-total td { font-size: 1.1rem; font-weight: 700; color: var(--pxo-dark); border-bottom: none; }
+
+.wc-proceed-to-checkout .checkout-button {
+    font-size: 1rem; padding: 15px 24px;
+    display: block; text-align: center; margin-top: 16px;
+}
+
+/* ── RESPONSIVO ─────────────────────────────────────────── */
+@media (max-width: 860px) {
+    .woocommerce-checkout .col2-set,
+    .woocommerce-checkout #order_review { padding: 28px 22px; }
+    #payment { padding: 24px 22px; }
+    .woocommerce-billing-fields__field-wrapper { grid-template-columns: 1fr; }
+    .woocommerce-billing-fields__field-wrapper .form-row-first,
+    .woocommerce-billing-fields__field-wrapper .form-row-last { grid-column: 1 / -1; }
+    .cart-collaterals .cart_totals { float: none; max-width: 100%; }
+}
+
+@media (max-width: 600px) {
+    body.woocommerce-checkout .woocommerce,
+    body.woocommerce-cart .woocommerce { padding: 20px 14px; }
+    table.cart th.product-subtotal,
+    table.cart td.product-subtotal { display: none; }
+}
+
+/* ── OCULTAR SITE-FOOTER NO CHECKOUT ────────────────────── */
+body.woocommerce-checkout .site-footer { display: none; }
+
+/* ── OCULTAR WPML NO CHECKOUT ────────────────────────────── */
+body.woocommerce-checkout .wpml-ls,
+body.woocommerce-checkout .wpml-ls-statics-footer,
+body.woocommerce-checkout #lang_sel,
+body.woocommerce-checkout .lang-select,
+body.woocommerce-checkout [class*="wpml-ls"],
+body.woocommerce-checkout .pll-parent-menu-item,
+body.woocommerce-checkout .polylang { display: none; }
+
+/* ══════════════════════════════════════════════════════════
+   WOOCOMMERCE BLOCKS CHECKOUT
+   seletores: .wc-block-* / .wp-block-woocommerce-checkout
+   ══════════════════════════════════════════════════════════ */
+
+/* ── PAGE TITLE ──────────────────────────────────────────── */
+.woocommerce-checkout h1.wp-block-heading,
+.woocommerce-checkout .entry-title,
+body.woocommerce-checkout h1 {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--pxo-dark);
+    margin-bottom: 32px;
+}
+
+/* ── LAYOUT PRINCIPAL — alinhado ao .container do header ─── */
+.wp-block-woocommerce-checkout,
+.wc-block-checkout {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Oculta o título "Checkout" duplicado se estiver no h1 gerado pelo WC Blocks */
+.wc-block-checkout h1.wp-block-heading {
+    display: none;
+}
+
+.wc-block-checkout__main {
+    gap: 20px;
+}
+
+/* ── STEP CARDS ──────────────────────────────────────────── */
+.wc-block-components-checkout-step,
+.wc-block-checkout__contact-fields,
+.wc-block-checkout__billing-fields,
+.wc-block-checkout__shipping-fields,
+.wc-block-checkout__payment-method,
+.wc-block-checkout__add-note,
+.wc-block-checkout__terms,
+.wc-block-checkout__actions {
+    background: #fff;
+    border-radius: var(--pxo-radius);
+    box-shadow: var(--pxo-shadow);
+    padding: 32px 36px;
+    border: none;
+    margin-bottom: 16px;
+}
+
+/* ── TÍTULOS DOS STEPS ───────────────────────────────────── */
+.wc-block-components-checkout-step__title {
+    font-size: .78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    color: var(--pxo-muted);
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #eee;
+}
+
+/* ── INPUTS — WC Blocks ──────────────────────────────────── */
+/*
+   WC Blocks floating label: label posicionada absolute dentro do input.
+   padding-top grande abre espaço para o label acima do valor digitado.
+*/
+.wc-block-components-text-input input,
+.wc-block-components-country-input input,
+.wc-block-components-state-input input,
+.wc-block-components-text-input textarea,
+.wc-block-components-select select,
+.woocommerce-checkout .wc-block-components-text-input input {
+    border: 1.5px solid var(--pxo-border-idle);
+    border-radius: 8px;
+    padding: 24px 14px 8px;
+    font-size: .88rem;
+    color: var(--pxo-text);
+    background: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color .2s, box-shadow .2s;
+    height: auto;
+    outline: none;
+    box-shadow: none;
+}
+
+.wc-block-components-text-input input:focus,
+.wc-block-components-country-input input:focus,
+.wc-block-components-state-input input:focus,
+.wc-block-components-select select:focus,
+.wc-block-components-text-input textarea:focus {
+    border-color: var(--pxo-border);
+    box-shadow: 0 0 0 3px var(--pxo-green-glow);
+}
+
+/* Preenchido — mantém borda verde */
+.wc-block-components-text-input:not(.is-active) input:not(:placeholder-shown),
+.wc-block-components-text-input.has-error input {
+    border-color: var(--pxo-border);
+}
+.wc-block-components-text-input.has-error input {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 3px rgba(231,76,60,.12);
+}
+
+/* Label flutuante do Blocks (endereço, contato) */
+.wc-block-components-text-input label,
+.wc-block-components-country-input label,
+.wc-block-components-state-input label,
+.wc-block-components-select label {
+    position: absolute;
+    top: 7px;
+    left: 14px;
+    font-size: .65rem;
+    font-weight: 600;
+    color: var(--pxo-muted);
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    line-height: 1;
+    pointer-events: none;
+    transition: top .15s, font-size .15s;
+}
+
+/* Exceção: labels/inputs DENTRO do accordion (Pagar.me, Stripe)
+   Label é irmão ANTES do input — não é floating label.
+   Reseta posicionamento absoluto e padding do input. */
+.wc-block-components-radio-control-accordion-content .wc-block-components-text-input label,
+.wc-block-components-radio-control-accordion-content .wc-block-components-country-input label,
+.wc-block-components-radio-control-accordion-content .wc-block-components-state-input label,
+.wc-block-components-radio-control-accordion-content .wc-block-components-select label,
+.wc-block-components-payment-method-body .wc-block-components-text-input label,
+.wc-block-components-radio-control-accordion-content .components-input-control__label,
+.wc-block-components-radio-control-accordion-content label {
+    position: static;
+    top: unset;
+    left: unset;
+    text-transform: none;
+    letter-spacing: .01em;
+    font-size: .7rem;
+    font-weight: 600;
+    color: #44b9a6!important;
+    margin-bottom: 5px;
+    display: block;
+    pointer-events: auto;
+    line-height: 1.3;
+}
+/* Reset do padding do input (cancela floating-label padding) */
+.wc-block-components-radio-control-accordion-content
+  .wc-block-components-text-input input,
+.wc-block-components-radio-control-accordion-content
+  .wc-block-components-text-input textarea {
+    padding: 10px 13px;
+    font-size: .85rem;
+}
+
+/* Label ativa (floating) */
+.wc-block-components-text-input.is-active label,
+.wc-block-components-text-input input:focus ~ label,
+.wc-block-components-text-input input:not(:placeholder-shown) ~ label {
+    color: var(--pxo-green);
+}
+
+/* ── RADIO CONTROL — opção simples (não accordion) ──────── */
+.wc-block-components-radio-control__option {
+    border: 1.5px solid var(--pxo-border-idle);
+    border-radius: 10px;
+    padding: 16px 18px;
+    margin-bottom: 0;   /* gap é controlado pelo flex do wrapper */
+    transition: border-color .2s, background .2s, box-shadow .2s;
+    cursor: pointer;
+}
+.wc-block-components-radio-control__option:hover {
+    border-color: var(--pxo-green);
+    box-shadow: 0 2px 10px rgba(68,185,166,.10);
+}
+.wc-block-components-radio-control__option:has(input[type="radio"]:checked),
+.wc-block-components-radio-control__option--checked {
+    border-color: var(--pxo-border);
+    background: #f0faf8;
+    box-shadow: 0 2px 12px rgba(68,185,166,.14);
+}
+.wc-block-components-radio-control__option-layout {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.wc-block-components-radio-control__option input[type="radio"] {
+    accent-color: var(--pxo-green);
+    width: 16px; height: 16px;
+    flex-shrink: 0; position: static; margin: 0;
+}
+
+/* ── ACCORDION PAYMENT (estrutura real do WC Blocks) ────── */
+/* Wrapper geral — garante gap entre as opções em QUALQUER estrutura */
+.wc-block-components-radio-control {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Lista de opções (ul) */
+.wc-block-components-radio-control-accordion,
+ul.wc-block-components-radio-control-accordion {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Cada item (div/li) */
+.wc-block-components-radio-control-accordion-option {
+    border: 1.5px solid var(--pxo-border-idle);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #fff;
+    transition: border-color .2s, box-shadow .2s;
+    margin: 0;
+}
+.wc-block-components-radio-control-accordion-option:hover {
+    border-color: var(--pxo-green);
+    box-shadow: 0 2px 10px rgba(68,185,166,.10);
+}
+.wc-block-components-radio-control-accordion-option:has(input[type="radio"]:checked) {
+    border-color: var(--pxo-border);
+    box-shadow: 0 2px 12px rgba(68,185,166,.14);
+}
+
+/* Cabeçalho (div com radio + label) */
+.wc-block-components-radio-control-accordion-option__header {
+    display: flex;
+    align-items: center;
+    padding: 16px 18px;
+    gap: 12px;
+    cursor: pointer;
+    /* REMOVE a borda preta padrão do WC Blocks */
+    border: none;
+    border-bottom: none;
+    background: transparent;
+    min-height: auto;
+}
+.wc-block-components-radio-control-accordion-option:has(input[type="radio"]:checked)
+  .wc-block-components-radio-control-accordion-option__header {
+    background: #f0faf8;
+}
+
+/* Radio input dentro do accordion */
+.wc-block-components-radio-control-accordion-option__header input[type="radio"],
+.wc-block-components-radio-control-accordion-option input[type="radio"] {
+    accent-color: var(--pxo-green);
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+    /* força posição estática — WC Blocks usa position:absolute em versões antigas */
+    position: static;
+    margin: 0;
+    cursor: pointer;
+    order: 0;
+}
+
+/* Label dentro do header (contém o nome do método) */
+.wc-block-components-radio-control-accordion-option__header label,
+.wc-block-components-radio-control-accordion-option__header
+  .wc-block-components-radio-control-accordion-option__heading {
+    /* CORRIGE o justify-content:center padrão do WC Blocks */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    flex: 1;
+    gap: 8px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    min-height: auto;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--pxo-text);
+    background: none;
+    border: none;
+    /* Anula qualquer transform/translate do WC Blocks */
+    transform: none;
+    position: static;
+}
+
+/* Span de grupo da label (pode ter text-align:center no WC Blocks) */
+.wc-block-components-radio-control__label-group,
+.wc-block-components-radio-control-accordion-option__header
+  .wc-block-components-radio-control__label-group {
+    text-align: left;
+    flex: 1;
+}
+
+/* Texto do nome do método */
+.wc-block-components-radio-control__label {
+    font-size: .9rem;
+    font-weight: 700;
+    color: var(--pxo-text);
+    text-align: left;
+    display: block;
+    line-height: 1.3;
+    letter-spacing: .01em;
+}
+
+/* Ícones de bandeiras (direita) */
+.wc-block-components-payment-method-icons {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    margin-left: auto;
+    flex-shrink: 0;
+    order: 99;
+}
+.wc-block-components-payment-method-icons img {
+    height: 18px; width: auto;
+    border-radius: 3px; max-width: none;
+}
+
+/* Corpo do método (Stripe fields, PIX info) */
+.wc-block-components-radio-control-accordion-content,
+.wc-block-components-payment-method-body {
+    background: #f8fffe;
+    border-top: 1px solid #e0f2ef;
+    padding: 20px 20px 18px;
+    font-size: .85rem;
+    color: var(--pxo-text);
+    border-radius: 0 0 9px 9px;
+}
+
+/* Labels dentro do corpo (Card number, Expiration, etc.) */
+.wc-block-components-radio-control-accordion-content label,
+.wc-block-components-payment-method-body label {
+    font-size: .75rem;
+    font-weight: 600;
+    /* Pagar.me e Stripe injetam text-transform:uppercase — sobrescreve */
+    text-transform: none;
+    letter-spacing: .01em;
+    color: var(--pxo-muted);
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* Garante que nenhum label filho também fique em maiúsculas */
+.wc-block-components-radio-control-accordion-content label *,
+.wc-block-components-payment-method-body label * {
+    text-transform: none;
+}
+
+/* ── SELECT DE PARCELAS (Gutenberg components-select-control) ─
+   O Pagar.me usa o componente Gutenberg para o dropdown de
+   parcelas — classes diferentes do WC Blocks select padrão.
+──────────────────────────────────────────────────────── */
+
+/* Wrapper externo — garante largura total e margem superior */
+.wc-block-components-radio-control-accordion-content .wc-blocks-components-select,
+.wc-block-components-radio-control-accordion-content .components-base-control,
+.wc-block-components-radio-control-accordion-content .components-select-control {
+    width: 100%;
+    margin-top: 4px;
+}
+
+/* Label "Installments quantity" — maior e mais legível */
+.wc-block-components-radio-control-accordion-content .components-input-control__label {
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--pxo-text);
+    text-transform: none;
+    letter-spacing: 0;
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* Container do input (posição relativa para o backdrop) */
+.wc-block-components-radio-control-accordion-content .components-input-control__container {
+    position: relative;
+    width: 100%;
+}
+
+/* O backdrop é o "border" visual do Gutenberg — substitui pelo nosso padrão */
+.wc-block-components-radio-control-accordion-content .components-input-control__backdrop {
+    border: 1.5px solid var(--pxo-border-idle);
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: none;
+    transition: border-color .2s;
+}
+.wc-block-components-radio-control-accordion-content .components-input-control__container:focus-within
+  .components-input-control__backdrop {
+    border-color: var(--pxo-green);
+    box-shadow: 0 0 0 3px var(--pxo-green-glow);
+}
+
+/* O <select> em si */
+.wc-block-components-radio-control-accordion-content .components-select-control__input {
+    width: 100%;
+    padding: 12px 40px 12px 14px;   /* espaço para o chevron SVG */
+    font-size: .95rem;
+    font-weight: 500;
+    color: var(--pxo-text);
+    background: transparent;         /* o backdrop cuida do fundo */
+    border: none;                    /* borda vem do backdrop */
+    border-radius: 8px;
+    outline: none;
+    box-shadow: none;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    height: auto;
+    line-height: 1.4;
+    position: relative;
+    z-index: 1;
+}
+
+/* Suffix wrapper (o SVG do chevron) */
+.wc-block-components-radio-control-accordion-content .components-input-control__suffix {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: 2;
+    color: var(--pxo-muted);
+}
+.wc-block-components-radio-control-accordion-content .components-input-control__suffix svg {
+    width: 18px;
+    height: 18px;
+    fill: var(--pxo-muted);
+    display: block;
+}
+
+/* Parágrafo de aviso (Test mode, etc.) */
+.wc-block-components-radio-control-accordion-content p,
+.wc-block-components-payment-method-body p {
+    font-size: .78rem;
+    color: var(--pxo-muted);
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+/* Checkbox "Save payment info" — corrige uppercase herdado */
+.wc-block-components-radio-control-accordion-content .wc-block-components-checkbox,
+.wc-block-components-payment-method-body .wc-block-components-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-top: 10px;
+}
+.wc-block-components-radio-control-accordion-content .wc-block-components-checkbox label,
+.wc-block-components-payment-method-body .wc-block-components-checkbox label,
+.wc-block-components-checkbox__label {
+    font-size: .78rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--pxo-muted);
+}
+.wc-block-components-checkbox input[type="checkbox"] {
+    accent-color: var(--pxo-green);
+    width: 15px; height: 15px;
+    flex-shrink: 0; margin-top: 2px;
+}
+
+/* Descrição do método (legacy) */
+.wc-block-components-radio-control__description,
+.wc-block-components-payment-method-description {
+    font-size: .78rem;
+    color: var(--pxo-muted);
+    margin-top: 2px;
+}
+
+/* ── BOTÃO PLACE ORDER ───────────────────────────────────── */
+.wc-block-components-checkout-place-order-button,
+.wc-block-checkout__actions .wc-block-components-checkout-place-order-button {
+    background: var(--pxo-green);
+    border: none;
+    border-radius: 9px;
+    color: #fff;
+    font-size: .9rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 16px 24px;
+    width: 100%;
+    cursor: pointer;
+    transition: background .2s, transform .1s, box-shadow .2s;
+    box-shadow: 0 4px 16px rgba(68,185,166,.38);
+}
+
+.wc-block-components-checkout-place-order-button:hover {
+    background: var(--pxo-green-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(68,185,166,.45);
+}
+
+/* ── ORDER SUMMARY (sidebar) ─────────────────────────────── */
+.wc-block-order-summary-container,
+.wc-block-components-order-summary {
+    background: #fff;
+    border-radius: var(--pxo-radius);
+    box-shadow: var(--pxo-shadow);
+    border: none;
+    overflow: hidden;
+    padding: 0;
+}
+
+/* Header "Order summary" / botão do painel */
+.wc-block-components-panel__button,
+.wc-block-components-order-summary__button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 14px 18px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    gap: 8px;
+}
+.wc-block-components-order-summary__button-text,
+.wc-block-components-panel__button-title {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .7px;
+    color: var(--pxo-muted);
+}
+/* Valor total no header do painel */
+.wc-block-components-panel__button .wc-block-formatted-money-amount,
+.wc-block-components-order-summary__button .wc-block-formatted-money-amount {
+    font-size: .82rem;
+    font-weight: 700;
+    color: var(--pxo-dark);
+}
+
+/* Lista de itens */
+.wc-block-components-order-summary-items {
+    padding: 0 18px;
+}
+.wc-block-components-panel {
+    padding: 0 18px;
+}
+
+/* ── ITEM DO RESUMO ──────────────────────────────────────── */
+.wc-block-components-order-summary-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+/* Thumbnail */
+.wc-block-components-order-summary-item__image {
+    flex-shrink: 0;
+    width: 44px;
+    min-width: 44px;
+    position: relative;
+}
+.wc-block-components-order-summary-item__image img {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 5px;
+    display: block;
+}
+
+/* Badge de quantidade */
+.wc-block-components-order-summary-item__quantity {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: var(--pxo-dark);
+    color: #fff;
+    font-size: .65rem;
+    font-weight: 700;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+/* Descrição + preço */
+.wc-block-components-order-summary-item__wrap {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+/* Nome do produto */
+.wc-block-components-product-name,
+.wc-block-components-order-summary-item__full-name {
+    flex: 1;
+    font-size: .78rem;
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+    color: var(--pxo-dark);
+    line-height: 1.35;
+    white-space: normal;
+    margin: 0;
+}
+
+/* Metadados (Room:, variante, etc.) */
+.wc-block-components-product-metadata,
+.wc-block-components-order-summary-item__description {
+    font-size: .7rem;
+    color: var(--pxo-muted);
+    margin-top: 2px;
+    text-transform: none;
+    letter-spacing: 0;
+}
+.wc-block-components-product-metadata__description-list,
+.wc-block-components-product-metadata__description-list-item {
+    font-size: .7rem;
+    color: var(--pxo-muted);
+}
+
+/* Preço total do item */
+.wc-block-components-order-summary-item__full-price {
+    flex-shrink: 0;
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--pxo-dark);
+    white-space: nowrap;
+}
+.wc-block-components-order-summary-item__individual-prices {
+    font-size: .68rem;
+    color: var(--pxo-muted);
+}
+
+/* ── TOTALS ──────────────────────────────────────────────── */
+.wc-block-components-totals-wrapper {
+    border-top: 1px solid #eee;
+    padding: 0;
+    background: #fff;
+}
+
+.wc-block-components-totals-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 18px;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.wc-block-components-totals-item__label {
+    font-size: .75rem;
+    color: var(--pxo-muted);
+    font-weight: 600;
+}
+
+.wc-block-components-totals-item__value,
+.wc-block-formatted-money-amount {
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--pxo-dark);
+}
+
+/* Total final */
+.wc-block-components-totals-footer-item {
+    padding: 12px 18px;
+    border-bottom: none;
+    background: #f5fdfb;
+    border-top: 2px solid #e0f4f0;
+}
+.wc-block-components-totals-footer-item .wc-block-components-totals-item__label {
+    font-size: .82rem;
+    font-weight: 700;
+    color: var(--pxo-dark);
+}
+.wc-block-components-totals-footer-item .wc-block-components-totals-item__value,
+.wc-block-components-totals-footer-item .wc-block-formatted-money-amount {
+    font-size: .95rem;
+    font-weight: 800;
+    color: var(--pxo-green);
+}
+
+/* Sidebar sticky no desktop */
+.wc-block-checkout__sidebar {
+    position: sticky;
+    top: calc(var(--header-h, 64px) + 16px);
+}
+
+/* ── COUPON PANEL ────────────────────────────────────────── */
+.wc-block-components-panel__button {
+    padding: 14px 0;
+    background: none;
+    border: none;
+    border-top: 1px solid #eee;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.wc-block-components-totals-coupon__form input {
+    border: 1.5px solid var(--pxo-border-idle);
+    border-radius: 8px;
+    padding: 11px 14px;
+    font-size: .93rem;
+}
+
+.wc-block-components-totals-coupon__form input:focus {
+    border-color: var(--pxo-border);
+    box-shadow: 0 0 0 3px var(--pxo-green-glow);
+    outline: none;
+}
+
+.wc-block-components-totals-coupon__button {
+    background: var(--pxo-green);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 700;
+    padding: 11px 20px;
+    cursor: pointer;
+    transition: background .2s;
+}
+.wc-block-components-totals-coupon__button:hover {
+    background: var(--pxo-green-dark);
+}
+
+/* ── CHECKBOX (add note, terms) ──────────────────────────── */
+.wc-block-checkout__add-note .wc-block-components-checkbox input[type="checkbox"],
+.wc-block-checkout__terms .wc-block-components-checkbox input[type="checkbox"] {
+    accent-color: var(--pxo-green);
+    width: 16px;
+    height: 16px;
+}
+
+.wc-block-checkout__terms,
+.wc-block-checkout__add-note {
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    margin-bottom: 8px;
+}
+
+/* ── TERMS TEXT ──────────────────────────────────────────── */
+.wc-block-checkout__terms p,
+.wc-block-components-checkbox__label {
+    font-size: .83rem;
+    color: var(--pxo-muted);
+}
+
+/* ── SVG CONTIDO (blocks) ────────────────────────────────── */
+.wc-block-components-checkout-step svg,
+.wc-block-checkout__main svg,
+.wc-block-checkout__sidebar svg {
+    overflow: hidden;
+}
+
+/* ── EXPRESS CHECKOUT (Apple Pay / Google Pay) ───────────── */
+.wc-block-checkout__express-payment,
+.wc-block-checkout__express-payment-container {
+    background: #fff;
+    border-radius: var(--pxo-radius);
+    box-shadow: var(--pxo-shadow);
+    margin-bottom: 16px;
+}
+
+/* Container interno (div real renderizado pelo WC Blocks) */
+.wc-block-components-express-payment,
+.wc-block-components-express-payment--checkout {
+    padding: 0;   /* padding já vem do pai acima */
+}
+
+/*
+   WC Blocks padrão (reset necessário):
+   - __title-container: position:relative; display:flex; height colapsa para 1px
+   - __title: position:absolute; top:50%; transform:translateY(-50%)
+   Resetamos tudo para layout normal de bloco.
+*/
+.wc-block-components-express-payment__title-container {
+    position: static;
+    display: block;
+    height: auto;
+    min-height: 0;
+    align-items: unset;
+    justify-content: unset;
+    border-top: none;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #eee;
+    background: transparent;
+    overflow: visible;
+}
+
+.wc-block-components-express-payment__title-container::before,
+.wc-block-components-express-payment__title-container::after {
+    display: none;
+    content: none;
+    height: 0;
+    background: none;
+}
+
+.wc-block-components-express-payment__title {
+    position: static;
+    top: unset;
+    left: unset;
+    right: unset;
+    transform: none;
+    background: transparent;
+    padding: 0;
+    display: block;
+    font-size: .7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: var(--pxo-muted);
+    margin: 0;
+    line-height: 1.4;
+    white-space: normal;
+}
+
+.wc-block-components-express-payment__event-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.wc-block-components-express-payment__event-buttons > * {
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Separador "Or continue below" — removido a pedido */
+.wc-block-checkout__separator,
+.wc-block-components-express-payment__or-separator,
+.wc-block-components-express-payment-continue-rule,
+.wc-block-components-express-payment-continue-rule--checkout {
+    display: none;
+}
+
+/* ── SPINNER ENQUANTO MÉTODOS DE PAGAMENTO CARREGAM ─────────── */
+/*
+   O WC Blocks exibe temporariamente "There are no payment methods available"
+   enquanto os métodos ainda não foram carregados no DOM.
+   Usamos :has() para detectar esse estado (sem accordion-option) e:
+   1. ocultar o aviso vermelho
+   2. exibir um spinner centralizado
+   Quando os métodos carregam, o :not(:has(...)) deixa de corresponder
+   e o spinner desaparece automaticamente.
+*/
+.wc-block-checkout__payment-method:not(:has(.wc-block-components-radio-control-accordion-option))
+  .wc-block-components-notice-banner,
+.wc-block-checkout__payment-method:not(:has(.wc-block-components-radio-control-accordion-option))
+  .wc-block-components-notice-banner--error {
+    display: none;
+}
+
+.wc-block-checkout__payment-method:not(:has(.wc-block-components-radio-control-accordion-option))::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--pxo-green-glow);
+    border-top-color: var(--pxo-green);
+    border-radius: 50%;
+    animation: pxo-spin .7s linear infinite;
+    margin: 24px auto;
+}
+
+@keyframes pxo-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ── STRIPE PAYMENT BODY ─────────────────────────────────── */
+.wc-block-components-payment-method-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Conteúdo interno do método selecionado (ex: Stripe campos) */
+.wc-block-components-radio-control-accordion-content,
+.wc-block-components-payment-method-body {
+    background: #f8fdfc;
+    border: 1.5px solid #e0f4f0;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 20px 18px;
+    font-size: .87rem;
+    margin-top: -11px;
+    margin-bottom: 4px;
+}
+
+/* Labels dos campos Stripe ("Card number", etc) */
+.wc-block-components-payment-method-body label,
+.wc-block-components-radio-control-accordion-content label {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    color: var(--pxo-muted);
+    margin-bottom: 6px;
+    display: block;
+}
+
+/* Campos hosted (iframe wrapper) do Stripe */
+.wc-block-components-payment-method-body .wc-block-gateway-container,
+.wc-block-components-payment-method-body .wc-stripe-upe-element,
+.stripe-card-element {
+    border: 1.5px solid var(--pxo-border-idle);
+    border-radius: 8px;
+    padding: 11px 14px;
+    background: #fff;
+    transition: border-color .2s;
+}
+
+/* Texto "Test mode:" e afins */
+.wc-block-components-payment-method-body .woocommerce-save-account-number label,
+.wc-block-components-payment-method-description {
+    font-size: .82rem;
+    color: var(--pxo-muted);
+    font-style: italic;
+}
+
+/* Grid 2 colunas para validade + CVC */
+.wc-stripe-card-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+/* ── RESPONSIVO BLOCKS ───────────────────────────────────── */
+@media (max-width: 768px) {
+    .wc-block-components-checkout-step,
+    .wc-block-checkout__contact-fields,
+    .wc-block-checkout__billing-fields,
+    .wc-block-checkout__payment-method,
+    .wc-block-checkout__actions {
+        padding: 24px 20px;
+    }
+}
+
+
+
+/* ── CHECKOUT FOOTER MINIMAL ─────────────────────────────── */
+footer.checkout-footer {
+    background: #1a2a3a;
+    border-top: 3px solid #44b9a6;
+    padding: 28px 24px;
+    margin-top: 48px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+footer.checkout-footer .checkout-footer__inner {
+    max-width: 1320px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+footer.checkout-footer .checkout-footer__logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+footer.checkout-footer .checkout-footer__logo img {
+    height: 32px;
+    width: auto;
+    max-width: none;
+    filter: brightness(0) invert(1);
+    opacity: .85;
+    display: block;
+}
+footer.checkout-footer .checkout-footer__logo strong {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+footer.checkout-footer .checkout-footer__badges {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    flex: 1;
+}
+footer.checkout-footer .cf-badge {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: .75rem;
+    font-weight: 600;
+    color: rgba(255,255,255,.6);
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    white-space: nowrap;
+    line-height: 1;
+}
+footer.checkout-footer .cf-badge svg {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+    max-width: 16px;
+    max-height: 16px;
+    flex-shrink: 0;
+    overflow: hidden;
+    color: #44b9a6;
+    vertical-align: middle;
+}
+footer.checkout-footer .checkout-footer__payments {
+    height: 36px;
+    width: auto;
+    display: block;
+    vertical-align: middle;
+}
+footer.checkout-footer .checkout-footer__copy {
+    font-size: 16px;
+    color: rgba(255,255,255,.3);
+    margin: 0;
+    text-align: right;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+@media (max-width: 720px) {
+    footer.checkout-footer .checkout-footer__inner {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        gap: 14px;
+    }
+    footer.checkout-footer .checkout-footer__copy { text-align: center; }
+    footer.checkout-footer .checkout-footer__badges { gap: 14px; }
+}
+
+/* DEBUG VISUAL — Destaca label do select e input */
+.wc-block-components-select label {
+    position: absolute;
+    top: 7px;
+    left: 14px;
+    font-size: .65rem;
+    font-weight: 600;
+    color: var(--pxo-green);
+    text-transform: uppercase;
+    letter-spacing: .4px;
+    line-height: 1;
+    pointer-events: none;
+    transition: top .15s, font-size .15s;
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CUSTOM: REMOVER PADDING DA TABELA E PAYMENT
+   ESPECIFICIDADE MÁXIMA - SOBRESCREVE QUALQUER OUTRO CSS
+   ═══════════════════════════════════════════════════════════ */
+body.woocommerce-checkout form.checkout.woocommerce-checkout .woocommerce-checkout-review-order-table,
+body.woocommerce-checkout form.checkout.woocommerce-checkout #payment,
+html body.woocommerce-checkout form.checkout.woocommerce-checkout .woocommerce-checkout-review-order-table,
+html body.woocommerce-checkout form.checkout.woocommerce-checkout #payment,
+body form.checkout.woocommerce-checkout .woocommerce-checkout-review-order-table,
+body form.checkout.woocommerce-checkout #payment {
+    background: #fff !important;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 0px!important;
+    border-bottom-left-radius:0px!important;
+    box-shadow: var(--pxo-shadow) !important;
+    padding: 0px !important;
+    padding-top: 0px !important;
+    padding-right: 0px !important;
+    padding-bottom: 0px !important;
+    padding-left: 0px !important;
+    margin-bottom: 0px !important;
+    box-sizing: border-box !important;
+    display: block !important;
+    width: 100% !important;
+}
+
