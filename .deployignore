@@ -27,7 +27,7 @@
 !wp-content/plugins/wp-seo-multilingual/
 !wp-content/plugins/planetaexo-acf-loader/
 !wp-content/plugins/woocommerce/
-!wp-content/plugins/planetaexo-unificado-plugin/
+# (planetaexo-unificado-plugin omitted — synced from Git)
 !wp-content/plugins/pxo-cart-fix/
 !wp-content/plugins/pxo-checkout-styles/
 !wp-content/plugins/pxo-pagarme-wcml-fix/
@@ -41,7 +41,7 @@
 
 # Protect these server themes (remove lines for themes you want deleted)
 !wp-content/themes/twentytwentyfive/
-!wp-content/themes/planetaexo-template/
+# planetaexo-template + planetaexo-unificado-plugin: NOT listed here — deploy from Git updates them (Pressable: remove from protect list what Git should sync)
 
 # Exclude mu-plugins directory - not in Git repository
 wp-content/mu-plugins/
