@@ -423,10 +423,59 @@ function pxo_register_billing_passport_field( $fields ) {
 }
 
 /**
- * País ≠ Brasil: passaporte em billing_passport — não aplicar validação de CPF ao documento.
- * Remove erros típicos de plugins brasileiros em billing_cpf e exige passaporte preenchido.
+ * Antes de qualquer validação de plugin: país ≠ BR → esvaziar CPF no POST (muitos leem $_POST direto).
  */
-add_action( 'woocommerce_after_checkout_validation', 'pxo_checkout_passport_vs_cpf', 999, 2 );
+add_action( 'woocommerce_checkout_process', 'pxo_unset_post_billing_cpf_non_br', 0 );
+function pxo_unset_post_billing_cpf_non_br() {
+	if ( empty( $_POST['billing_country'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		return;
+	}
+	$country = wc_clean( wp_unslash( $_POST['billing_country'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	if ( '' === $country || 'BR' === $country ) {
+		return;
+	}
+	$_POST['billing_cpf'] = ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+}
+
+/**
+ * País ≠ Brasil: CPF não é obrigatório no POST (plugins BR ainda validam o campo escondido).
+ */
+add_filter( 'woocommerce_checkout_posted_data', 'pxo_clear_billing_cpf_when_non_br', 5, 1 );
+function pxo_clear_billing_cpf_when_non_br( $data ) {
+	if ( ! is_array( $data ) ) {
+		return $data;
+	}
+	$country = isset( $data['billing_country'] ) ? wc_clean( $data['billing_country'] ) : '';
+	if ( '' === $country || 'BR' === $country ) {
+		return $data;
+	}
+	$data['billing_cpf'] = '';
+	return $data;
+}
+
+/**
+ * No envio: marcar billing_cpf como não obrigatório quando país ≠ BR (Extra Checkout Fields BR, etc.).
+ */
+add_filter( 'woocommerce_checkout_fields', 'pxo_billing_cpf_not_required_non_br', 10001 );
+function pxo_billing_cpf_not_required_non_br( $fields ) {
+	if ( ! is_array( $fields ) || empty( $_POST['billing_country'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		return $fields;
+	}
+	$country = wc_clean( wp_unslash( $_POST['billing_country'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	if ( '' === $country || 'BR' === $country ) {
+		return $fields;
+	}
+	if ( isset( $fields['billing']['billing_cpf'] ) && is_array( $fields['billing']['billing_cpf'] ) ) {
+		$fields['billing']['billing_cpf']['required'] = false;
+	}
+	return $fields;
+}
+
+/**
+ * País ≠ Brasil: passaporte em billing_passport — não aplicar validação de CPF ao documento.
+ * Remove erros de plugins brasileiros (código OU mensagem contendo "cpf") e exige passaporte preenchido.
+ */
+add_action( 'woocommerce_after_checkout_validation', 'pxo_checkout_passport_vs_cpf', 9999, 2 );
 function pxo_checkout_passport_vs_cpf( $data, $errors ) {
 	if ( ! ( $errors instanceof WP_Error ) ) {
 		return;
@@ -436,14 +485,27 @@ function pxo_checkout_passport_vs_cpf( $data, $errors ) {
 		return;
 	}
 	$passport = isset( $_POST['billing_passport'] ) ? trim( wp_unslash( $_POST['billing_passport'] ) ) : '';
-	foreach ( $errors->get_error_codes() as $code ) {
-		$c = strtolower( (string) $code );
+
+	$codes = $errors->get_error_codes();
+	foreach ( $codes as $code ) {
+		$remove = false;
+		$c      = strtolower( (string) $code );
 		if ( 'billing_cpf' === $code || false !== strpos( $c, 'cpf' ) ) {
-			if ( method_exists( $errors, 'remove' ) ) {
-				$errors->remove( $code );
+			$remove = true;
+		}
+		if ( ! $remove ) {
+			foreach ( (array) $errors->get_error_messages( $code ) as $msg ) {
+				if ( is_string( $msg ) && false !== stripos( $msg, 'cpf' ) ) {
+					$remove = true;
+					break;
+				}
 			}
 		}
+		if ( $remove && method_exists( $errors, 'remove' ) ) {
+			$errors->remove( $code );
+		}
 	}
+
 	if ( '' === $passport ) {
 		$errors->add( 'billing_passport', __( 'Informe o número do passaporte.', 'planetaexo' ) );
 	}
