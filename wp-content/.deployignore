@@ -1,0 +1,51 @@
+# Mesmas regras que /.deployignore, mas com caminhos RELATIVOS a wp-content/
+# Use quando o Pressable usa "Repository directory = wp-content" — o motor pode
+# resolver padrões a partir desta pasta e ignorar o ficheiro na raiz do repo.
+
+# Protect these server plugins
+!plugins/advanced-cache.php/
+!plugins/object-cache.php/
+!plugins/pressable-onepress-login/
+!plugins/woocommerce-extra-checkout-fields-for-brazil/
+!plugins/pix-por-piggly/
+!plugins/wpml-ninja-forms/
+!plugins/classic-editor/
+!plugins/wpml-wpforms/
+!plugins/cart-link-for-woocommerce/
+!plugins/contact-form-7-multilingual/
+!plugins/akismet/
+!plugins/wp-mail-smtp/
+!plugins/pagarme-payments-for-woocommerce/
+!plugins/woocommerce-multilingual/
+!plugins/otgs-installer-plugin/
+!plugins/wpml-string-translation/
+!plugins/wt-import-export-for-woo/
+!plugins/wt-import-export-for-woo-order/
+!plugins/wt-import-export-for-woo-product/
+!plugins/wt-import-export-for-woo-user/
+!plugins/sitepress-multilingual-cms/
+!plugins/advanced-custom-fields/
+!plugins/wp-seo-multilingual/
+!plugins/planetaexo-acf-loader/
+!plugins/woocommerce/
+!plugins/pxo-cart-fix/
+!plugins/pxo-checkout-styles/
+!plugins/pxo-pagarme-wcml-fix/
+!plugins/pxo-proposta-logo/
+!plugins/pxo-suppress-deprecations/
+!plugins/woocommerce-google-adwords-conversion-tracking-tag/
+!plugins/acfml/
+!plugins/jetpack/
+!plugins/woocommerce-gateway-stripe/
+!plugins/pxo-checkout-debug/
+
+# planetaexo-unificado-plugin: synced from Git — not in protect list
+
+# Protect these server themes
+!themes/twentytwentythree/
+!themes/twentytwentyfour/
+!themes/twentytwentyfive/
+
+# planetaexo-template: synced from Git
+
+mu-plugins/

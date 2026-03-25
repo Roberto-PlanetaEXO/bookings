@@ -1,3 +1,6 @@
+# Se o deploy usa só a subpasta "wp-content" no Pressable, existe também
+# wp-content/.deployignore com os mesmos padrões em caminhos relativos (plugins/..., themes/...).
+#
 # .deployignore — Pressable: list ALL plugins/themes on the server with ! except those
 # you sync from Git (here: planetaexo-unificado-plugin, planetaexo-template).
 # Add a new !wp-content/plugins/<slug>/ when you install a plugin on the server only.
