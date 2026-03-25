@@ -1,5 +1,10 @@
-# Pressable: se o deploy incluir wp-content/plugins, não enviar terceiros — só o plugin custom.
-# (Com deploy só em wp-content/themes/, isto não altera o comportamento.)
+# Pressable: com deploy a partir de wp-content/, só enviar tema e plugin PlanetaEXO.
+# O restante (WooCommerce, WPML, temas padrão no servidor, etc.) não vem do Git.
+
 wp-content/plugins/*
 !wp-content/plugins/planetaexo-unificado-plugin/
 !wp-content/plugins/planetaexo-unificado-plugin/**
+
+wp-content/themes/*
+!wp-content/themes/planetaexo-template/
+!wp-content/themes/planetaexo-template/**
