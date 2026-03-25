@@ -1,9 +1,10 @@
 .DS_Store
 Thumbs.db
 
-# Dependências (se forem adicionadas depois)
+# Dependências de build (não versionar em temas/plugins com npm)
 node_modules/
-vendor/
+
+# vendor/ em plugins WordPress (WPML, etc.) precisa ir pro Git no deploy — não ignorar aqui
 
 # WordPress (mídias costumam ser grandes — descomente se não quiser versionar)
 # uploads/
