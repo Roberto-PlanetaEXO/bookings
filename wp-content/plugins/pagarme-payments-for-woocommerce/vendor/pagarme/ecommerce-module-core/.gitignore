@@ -1,7 +1,0 @@
-/.idea/
-/vendor/
-/tests/report
-/tests/mock/db_test.sqlite
-composer.lock
-.phpunit.result.cache
-coverage

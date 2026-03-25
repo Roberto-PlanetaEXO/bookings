@@ -1,0 +1,5 @@
+# Pressable: se o deploy incluir wp-content/plugins, não enviar terceiros — só o plugin custom.
+# (Com deploy só em wp-content/themes/, isto não altera o comportamento.)
+wp-content/plugins/*
+!wp-content/plugins/planetaexo-unificado-plugin/
+!wp-content/plugins/planetaexo-unificado-plugin/**

@@ -1,17 +1,22 @@
 .DS_Store
 Thumbs.db
 
-# Dependências de build (não versionar em temas/plugins com npm)
+# Só versionar tema e plugin PlanetaEXO (demais pastas podem existir localmente)
+plugins/*
+!planetaexo-unificado-plugin/
+!planetaexo-unificado-plugin/**
+
+themes/*
+!planetaexo-template/
+!planetaexo-template/**
+
 node_modules/
 
-# vendor/ em plugins WordPress (WPML, etc.) precisa ir pro Git no deploy — não ignorar aqui
-
-# WordPress (mídias costumam ser grandes — descomente se não quiser versionar)
+# WordPress (descomente se precisar)
 # uploads/
 # upgrade/
 # cache/
 
-# Logs e ambientes locais
 *.log
 .env
 .env.local
