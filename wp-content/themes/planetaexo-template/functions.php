@@ -423,14 +423,50 @@ function pxo_register_billing_passport_field( $fields ) {
 }
 
 /**
+ * País de cobrança no pedido atual: $_POST, post_data (AJAX checkout) ou cliente WC.
+ *
+ * @return string Código ISO do país ou string vazia.
+ */
+function pxo_checkout_billing_country_from_request() {
+	if ( isset( $_POST['billing_country'] ) && $_POST['billing_country'] !== '' ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		return wc_clean( wp_unslash( $_POST['billing_country'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	}
+	if ( ! empty( $_POST['post_data'] ) && is_string( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		parse_str( wp_unslash( $_POST['post_data'] ), $parsed ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( ! empty( $parsed['billing_country'] ) ) {
+			return wc_clean( $parsed['billing_country'] );
+		}
+	}
+	if ( function_exists( 'WC' ) && WC()->customer && WC()->customer->get_billing_country() ) {
+		return WC()->customer->get_billing_country();
+	}
+	return '';
+}
+
+/**
+ * Extra Checkout Fields for Brazil: CPF opcional quando país ≠ BR.
+ */
+add_filter( 'wcbcf_billing_fields', 'pxo_wcbcf_billing_cpf_optional_non_br', 99999 );
+function pxo_wcbcf_billing_cpf_optional_non_br( $fields ) {
+	if ( ! is_array( $fields ) ) {
+		return $fields;
+	}
+	$country = pxo_checkout_billing_country_from_request();
+	if ( '' === $country || 'BR' === $country ) {
+		return $fields;
+	}
+	if ( isset( $fields['billing_cpf'] ) && is_array( $fields['billing_cpf'] ) ) {
+		$fields['billing_cpf']['required'] = false;
+	}
+	return $fields;
+}
+
+/**
  * Antes de qualquer validação de plugin: país ≠ BR → esvaziar CPF no POST (muitos leem $_POST direto).
  */
 add_action( 'woocommerce_checkout_process', 'pxo_unset_post_billing_cpf_non_br', 0 );
 function pxo_unset_post_billing_cpf_non_br() {
-	if ( empty( $_POST['billing_country'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
-		return;
-	}
-	$country = wc_clean( wp_unslash( $_POST['billing_country'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	$country = pxo_checkout_billing_country_from_request();
 	if ( '' === $country || 'BR' === $country ) {
 		return;
 	}
@@ -440,12 +476,12 @@ function pxo_unset_post_billing_cpf_non_br() {
 /**
  * País ≠ Brasil: CPF não é obrigatório no POST (plugins BR ainda validam o campo escondido).
  */
-add_filter( 'woocommerce_checkout_posted_data', 'pxo_clear_billing_cpf_when_non_br', 5, 1 );
+add_filter( 'woocommerce_checkout_posted_data', 'pxo_clear_billing_cpf_when_non_br', 99999, 1 );
 function pxo_clear_billing_cpf_when_non_br( $data ) {
 	if ( ! is_array( $data ) ) {
 		return $data;
 	}
-	$country = isset( $data['billing_country'] ) ? wc_clean( $data['billing_country'] ) : '';
+	$country = isset( $data['billing_country'] ) ? wc_clean( $data['billing_country'] ) : pxo_checkout_billing_country_from_request();
 	if ( '' === $country || 'BR' === $country ) {
 		return $data;
 	}
@@ -458,10 +494,10 @@ function pxo_clear_billing_cpf_when_non_br( $data ) {
  */
 add_filter( 'woocommerce_checkout_fields', 'pxo_billing_cpf_not_required_non_br', 10001 );
 function pxo_billing_cpf_not_required_non_br( $fields ) {
-	if ( ! is_array( $fields ) || empty( $_POST['billing_country'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	if ( ! is_array( $fields ) ) {
 		return $fields;
 	}
-	$country = wc_clean( wp_unslash( $_POST['billing_country'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	$country = pxo_checkout_billing_country_from_request();
 	if ( '' === $country || 'BR' === $country ) {
 		return $fields;
 	}
@@ -469,6 +505,14 @@ function pxo_billing_cpf_not_required_non_br( $fields ) {
 		$fields['billing']['billing_cpf']['required'] = false;
 	}
 	return $fields;
+}
+
+/**
+ * Última passagem: força CPF não obrigatório (plugins que correm depois do filtro acima).
+ */
+add_filter( 'woocommerce_checkout_fields', 'pxo_billing_cpf_not_required_non_br_late', 999999 );
+function pxo_billing_cpf_not_required_non_br_late( $fields ) {
+	return pxo_billing_cpf_not_required_non_br( $fields );
 }
 
 /**
@@ -480,11 +524,17 @@ function pxo_checkout_passport_vs_cpf( $data, $errors ) {
 	if ( ! ( $errors instanceof WP_Error ) ) {
 		return;
 	}
-	$country = isset( $_POST['billing_country'] ) ? wc_clean( wp_unslash( $_POST['billing_country'] ) ) : '';
+	$country = pxo_checkout_billing_country_from_request();
 	if ( $country === 'BR' || $country === '' ) {
 		return;
 	}
-	$passport = isset( $_POST['billing_passport'] ) ? trim( wp_unslash( $_POST['billing_passport'] ) ) : '';
+	$passport = isset( $_POST['billing_passport'] ) ? trim( wp_unslash( $_POST['billing_passport'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+	if ( '' === $passport && ! empty( $_POST['post_data'] ) && is_string( $_POST['post_data'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		parse_str( wp_unslash( $_POST['post_data'] ), $parsed ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		if ( ! empty( $parsed['billing_passport'] ) ) {
+			$passport = trim( $parsed['billing_passport'] );
+		}
+	}
 
 	$codes = $errors->get_error_codes();
 	foreach ( $codes as $code ) {
@@ -508,6 +558,40 @@ function pxo_checkout_passport_vs_cpf( $data, $errors ) {
 
 	if ( '' === $passport ) {
 		$errors->add( 'billing_passport', __( 'Informe o número do passaporte.', 'planetaexo' ) );
+	}
+}
+
+/**
+ * Remove avisos WC em sessão que mencionam CPF (plugins usam wc_add_notice em vez de WP_Error).
+ */
+add_action( 'woocommerce_after_checkout_validation', 'pxo_strip_wc_notices_cpf_non_br', 999999, 2 );
+function pxo_strip_wc_notices_cpf_non_br( $data, $errors ) {
+	$country = pxo_checkout_billing_country_from_request();
+	if ( '' === $country || 'BR' === $country ) {
+		return;
+	}
+	if ( ! function_exists( 'wc_get_notices' ) || ! function_exists( 'wc_clear_notices' ) ) {
+		return;
+	}
+	$all = wc_get_notices();
+	if ( empty( $all ) || ! is_array( $all ) ) {
+		return;
+	}
+	wc_clear_notices();
+	foreach ( $all as $notice_type => $notices ) {
+		if ( ! is_array( $notices ) ) {
+			continue;
+		}
+		foreach ( $notices as $notice ) {
+			$raw  = isset( $notice['notice'] ) ? (string) $notice['notice'] : '';
+			$text = wp_strip_all_tags( $raw );
+			if ( $text !== '' && false !== stripos( $text, 'cpf' ) ) {
+				continue;
+			}
+			if ( $raw !== '' ) {
+				wc_add_notice( $notice['notice'], $notice_type, isset( $notice['data'] ) && is_array( $notice['data'] ) ? $notice['data'] : array() );
+			}
+		}
 	}
 }
 

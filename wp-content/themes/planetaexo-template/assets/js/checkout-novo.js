@@ -234,11 +234,11 @@
         if (orderLooksOk && passportField.length > 0) {
             const selectedCountry = countryField.val();
             if (selectedCountry === 'BR') {
-                cpfField.show().find('input').prop('required', true);
+                cpfField.show().find('input').prop('required', true).prop('disabled', false);
                 passportField.hide().find('input').prop('required', false);
                 sanitizePassportInput(passportField.find('input'));
             } else {
-                cpfField.hide().find('input').prop('required', false).val('');
+                cpfField.hide().find('input').prop('required', false).prop('disabled', false).val('');
                 passportField.show().find('input').prop('required', true);
                 sanitizePassportInput(passportField.find('input'));
             }
@@ -284,11 +284,11 @@
             const passportFieldRef = jQuery('#billing_passport_field');
             
             if (selectedCountry === 'BR') {
-                cpfFieldRef.show().find('input').prop('required', true);
+                cpfFieldRef.show().find('input').prop('required', true).prop('disabled', false);
                 passportFieldRef.hide().find('input').prop('required', false).val('');
                 sanitizePassportInput(passportFieldRef.find('input'));
             } else {
-                cpfFieldRef.hide().find('input').prop('required', false).val('');
+                cpfFieldRef.hide().find('input').prop('required', false).prop('disabled', false).val('');
                 passportFieldRef.show().find('input').prop('required', true);
                 sanitizePassportInput(passportFieldRef.find('input'));
             }
@@ -318,6 +318,18 @@
     jQuery(document.body).on('checkout_place_order', function() {
         lastCpfPassportRun = 0;
         handleCpfPassportFields();
+        // País ≠ BR: campo CPF não vai no POST (plugins/HTML5 deixam de exigir "CPF is a required field")
+        var country = jQuery('#billing_country').val();
+        var $cpf = jQuery('#billing_cpf');
+        if (country && country !== 'BR') {
+            $cpf.prop('disabled', true).removeAttr('required').removeAttr('aria-required');
+        } else {
+            $cpf.prop('disabled', false);
+        }
+    });
+
+    jQuery(document.body).on('checkout_error', function() {
+        jQuery('#billing_cpf').prop('disabled', false);
     });
     
     // MutationObserver: detecta quando o formulário é substituído (AJAX)
